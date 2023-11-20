@@ -16,7 +16,8 @@ Batasan collection maksimal 10 buku adalah pengingat penting untuk tetap fokus p
 ### Daftar modul yang diimplementasikan beserta pembagian kerja anggota
 1. Modul untuk membuat role, baik role user dan admin (Rifqi)
     - Dapat register sebagai user atau admin
-    - 
+    - Setiap pengguna memiliki profile mereka sendiri yang menampilkan details
+    - Setiap pengguna dapat mengganti password mereka
 2. Modul katalog buku yang bisa ditambahkan oleh admin dan diakses oleh user (Rafael)
     - Admin dapat menambahkan sebanyak-banyaknya buku ke dalam katalog
     - Admin dapat menghapus buku dari katalog
