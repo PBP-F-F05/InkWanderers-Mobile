@@ -48,6 +48,29 @@ Admin<br />
 Seorang admin dapat menambahkan buku baru ke dalam katalog yang sudah tersedia.<br />
 
 ### Alur pengintegrasian dengan web service Proyek Tengah Semester
+1. Pembuatan Fungsi di Django:
+- Membuat fungsi baru di website Django yang mampu menerima request dan mengirimkan respon ke aplikasi mobile. 
+- Fungsi ini harus dapat menangani method GET dan POST, kemudian web service Django dapat memberikan response dalam format JSON, yang akan mudah diolah oleh aplikasi Flutter.
+
+2. Integrasi dengan Flutter:
+- Pada aplikasi Flutter, tambahkan request ke URL fungsi yang telah dibuat di Django. 
+- Menggunakan library seperti http untuk memudahkan proses fetching JSON dari endpoint Django. 
+- Proses request ini dilakukan secara asynchronous untuk memastikan aplikasi mobile tetap responsif selama menunggu data dari server.
+
+3. Memanfaatkan Library dan Endpoint:
+- Menggunakan library untuk proses login dan logout pada aplikasi Flutter.
+- Beberapa endpoint dari projek uts dapat digunakan kembali dalam pengintegrasian, selain itu juga dapat menambahkan beberapa endpoint baru untuk mendukung beberapa fitur tambahan apabila diperlukan.
+
+4. Pengolahan Data di Flutter:
+- Buat berkas baru pada Flutter yang berfungsi dan bertanggung jawab untuk mengambil data secara asinkron dari backend Django.
+- Fungsi yang ada pada berkas tersebut bisa dipanggil dari luar berkas dan mengembalikan data, menjadikannya jembatan antara aplikasi dan backend.
+
+5. Implementasi di Widget Flutter:
+- Panggil fungsi fetch dari berkas baru yang sudah dibuat tersebut ke dalam widget yang relevan. Hal ini digunakan agar data JSON yang diambil dapat diolah dan ditampilkan sesuai kebutuhan aplikasi.
+
+6. Debugging:
+- Setelah mengintegrasikan semua bagian, lakukan debugging untuk memastikan bahwa semua fitur bekerja dengan baik.
+- Melakukan penyesuaian dan perbaikan apabila ditemukan error atau masalah lainnya.
 
 
 ### Tautan berita acara
