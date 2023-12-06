@@ -1,8 +1,7 @@
-  // import 'package:shopping_list/screens/menu.dart';
+  import 'package:inkwanderers_mobile/account/screens/profile_screen.dart';
   import 'package:flutter/material.dart';
   import 'package:pbp_django_auth/pbp_django_auth.dart';
   import 'package:provider/provider.dart';
-  import 'package:inkwanderers_mobile/main.dart';
 
   void main() {
       runApp(const LoginApp());
@@ -70,19 +69,17 @@
                                   // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                                   // Untuk menyambungkan Android emulator dengan Django pada localhost,
                                   // gunakan URL http://10.0.2.2/
-                                  final response = await request.login("https://inkwanderers-f05-tk.pbp.cs.ui.ac.id/auth/login/", {
+                                  final response = await request.login("http://localhost:8000/auth/login/", {
                                   'username': username,
                                   'password': password,
                                   });
-
-                                  print(request);
                       
                                   if (request.loggedIn) {
                                       String message = response['message'];
                                       String uname = response['username'];
                                       Navigator.pushReplacement(
                                           context,
-                                          MaterialPageRoute(builder: (context) => MyHomePage(title:"anjing")),
+                                          MaterialPageRoute(builder: (context) => ProfilePage(title:"Test")),
                                       );
                                       ScaffoldMessenger.of(context)
                                           ..hideCurrentSnackBar()
