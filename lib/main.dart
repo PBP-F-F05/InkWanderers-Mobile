@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:inkwanderers_mobile/Account/Screens/login.dart';
+import 'package:inkwanderers_mobile/Account/Screens/login_screen.dart';
+import 'package:inkwanderers_mobile/Account/Screens/profile_Screen.dart';
 
 
 void main() {
@@ -23,9 +24,10 @@ class MyApp extends StatelessWidget {
                 theme: ThemeData(
                     colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
                     useMaterial3: true,
+                    primaryColor: Color.fromRGBO(05, 10, 48, 1)
                 ),
-                home: LoginPage()),
-            
+                home:const LoginScreen(),
+            )
         );
     }
 }
