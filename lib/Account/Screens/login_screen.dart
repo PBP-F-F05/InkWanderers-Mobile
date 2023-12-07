@@ -139,7 +139,7 @@ class _LoginMobileScreen extends State<LoginMobileScreen> {
                                   // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                                   // Untuk menyambungkan Android emulator dengan Django pada localhost,
                                   // gunakan URL http://10.0.2.2/
-                                  final response = await request.login("http://localhost:8000/auth/login/", {
+                                  final response = await request.login("https://inkwanderers.my.id/auth/login/", {
                                   'username': username,
                                   'password': password,
                                   });
