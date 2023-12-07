@@ -9,10 +9,9 @@ import 'package:flutter/material.dart';
   import 'package:flutter/material.dart';
   import 'package:pbp_django_auth/pbp_django_auth.dart';
   import 'package:provider/provider.dart';
-  import 'package:inkwanderers_mobile/account/screens/login_Screen.dart';
 
-class SingUpScreen extends StatelessWidget {
-  const SingUpScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,14 +57,14 @@ class SingUpScreen extends StatelessWidget {
   }
 }
 
-class SignUpMobileScreen extends StatefulWidget {
-  const SignUpMobileScreen({Key? key}) : super(key: key);
+class LoginMobileScreen extends StatefulWidget {
+  const LoginMobileScreen({Key? key}) : super(key: key);
 
   @override
-  _SignUpMobileScreen createState() => _SignUpMobileScreen();
+  _LoginMobileScreen createState() => _LoginMobileScreen();
 }
 
-class _SignUpMobileScreen extends State<SignUpMobileScreen> {
+class _LoginMobileScreen extends State<LoginMobileScreen> {
   bool visiblePassword = true;
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -216,11 +215,11 @@ class _SignUpMobileScreen extends State<SignUpMobileScreen> {
         const SizedBox(height: 20),
         Center(
             child: TextButton(
-          child: const Text("Sudah punya akun"),
+          child: const Text("Belum punya akun"),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const LoginScreen();
-            }));
+            // Navigator.push(context, MaterialPageRoute(builder: (context) {
+            //   return const SignUpScreen();
+            // }));
           },
         )),
         const SizedBox(height: 150),

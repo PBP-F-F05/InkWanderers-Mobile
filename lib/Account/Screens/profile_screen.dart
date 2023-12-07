@@ -30,12 +30,12 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
 
-  Future<List<Profile>> fetchProfile(CookieRequest request) async {
+  Future<Profile> fetchProfile(CookieRequest request) async {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-  print("Line 33");
+  // print("Line 33");
   final response = await request.get("http://localhost:8000/account/get-profile-json/");
-  print("Line 35");
-  print(response);
+  // print("Line 35");
+  // print(response);
   // var url = Uri.parse('http://localhost:8000/account/get-profile-json/');
   // var response = await http.get(
   //   url,
@@ -43,28 +43,28 @@ class _ProfilePageState extends State<ProfilePage> {
   // ).catchError((e){print(e);});
   // print(url);
   // print(response.body);
-  var data;
-  print("Line 39");
-  // Directly decode response.body
-  try{
+//   var data;
+//   print("Line 39");
+//   // Directly decode response.body
+//   try{
     
-  print(Profile.fromJson(response).user.username);  
-}
-  catch(e){
-    print(e);
-  }
+//   print(Profile.fromJson(response).user.username);  
+// }
+//   catch(e){
+//     print(e);
+//   }
   
-  print("Line 42");
+//   print("Line 42");
 
-    // melakukan konversi data json menjadi object Product
-    List<Profile> list_profile = [];
-    for (var d in data) {
-      if (d != null) {
-        list_profile.add(Profile.fromJson(d));
-      }
-    }
-    print("Line 53");
-    return list_profile;
+//     // melakukan konversi data json menjadi object Product
+//     List<Profile> list_profile = [];
+//     for (var d in data) {
+//       if (d != null) {
+//         list_profile.add(Profile.fromJson(d));
+//       }
+//     }
+//     print("Line 53");
+    return Profile.fromJson(response);
   }
 
   @override
@@ -94,41 +94,45 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   );
                 } else {
-                  return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (_, index) => InkWell(
-                            onTap: () {
-                              // Navigator.push(context,
-                              //     MaterialPageRoute(builder: (context) {
-                              //   // return DetailScreen(
-                              //   //     // loggedInUser: widget.loggedInUser,
-                              //   //     selectedItem: snapshot.data![index]);
-                              // }));
-                            },
-                            child: Card(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 12),
-                              // padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "anjing",
-                                    style: const TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  // Text("anjing3"),
-                                  const SizedBox(height: 10),
-                                  // Text(
-                                  //     "${snapshot.data![index].fields.description}")
-                                ],
-                              ),
-                            ),
-                          ));
+                  final data = snapshot.data as Profile;
+                  return Center(
+                    child: Text(data.user.username),
+                  );
+                  // return ListView.builder(
+                  //     itemCount: snapshot.data!.length,
+                  //     itemBuilder: (_, index) => InkWell(
+                  //           onTap: () {
+                  //             // Navigator.push(context,
+                  //             //     MaterialPageRoute(builder: (context) {
+                  //             //   // return DetailScreen(
+                  //             //   //     // loggedInUser: widget.loggedInUser,
+                  //             //   //     selectedItem: snapshot.data![index]);
+                  //             // }));
+                  //           },
+                  //           child: Card(
+                  //             margin: const EdgeInsets.symmetric(
+                  //                 horizontal: 16, vertical: 12),
+                  //             // padding: const EdgeInsets.all(20.0),
+                  //             child: Column(
+                  //               mainAxisAlignment: MainAxisAlignment.start,
+                  //               crossAxisAlignment: CrossAxisAlignment.start,
+                  //               children: [
+                  //                 Text(
+                  //                   "anjing",
+                  //                   style: const TextStyle(
+                  //                     fontSize: 18.0,
+                  //                     fontWeight: FontWeight.bold,
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(height: 10),
+                  //                 // Text("anjing3"),
+                  //                 const SizedBox(height: 10),
+                  //                 // Text(
+                  //                 //     "${snapshot.data![index].fields.description}")
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ));
                 }
               }
             }));
