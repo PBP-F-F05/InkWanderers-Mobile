@@ -1,5 +1,3 @@
-import 'dart:js_util';
-
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Screens/login_screen.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -220,7 +218,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ),
                           ),
-Expanded(
+                          Expanded(
                             // width: double.infinity,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
@@ -245,8 +243,7 @@ Expanded(
                               ),
                             ),
                           ),
-
-Expanded(
+                          Expanded(
                             // width: double.infinity,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
@@ -271,7 +268,7 @@ Expanded(
                               ),
                             ),
                           ),
-Expanded(
+                          Expanded(
                             // width: double.infinity,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
@@ -284,11 +281,13 @@ Expanded(
                                 ),
                               ),
                               onPressed: () async {
-                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                                Navigator.pushReplacement(context,
+                                    MaterialPageRoute(builder: (context) {
                                   return LoginScreen();
                                 }));
 
-                                request.logout("https://inkwanderers.my.id/account/logout_flutter/");
+                                request.logout(
+                                    "https://inkwanderers.my.id/account/logout_flutter/");
                               },
                               child: Row(
                                 mainAxisAlignment:

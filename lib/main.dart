@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:inkwanderers_mobile/Account/Screens/login_screen.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
                     useMaterial3: true,
                     primaryColor: Color.fromRGBO(05, 10, 48, 1)
                 ),
-                home:const LoginScreen(),
+                home:const RegisterScreen(),
             )
         );
     }
