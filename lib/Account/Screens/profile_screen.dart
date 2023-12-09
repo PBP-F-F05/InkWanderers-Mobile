@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:inkwanderers_mobile/Account/Screens/change_password_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/login_screen.dart';
+import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:inkwanderers_mobile/main.dart';
@@ -33,42 +35,8 @@ class _ProfilePageState extends State<ProfilePage> {
     // print("Line 33");
     final response = await request
         .get("https://inkwanderers.my.id/account/get-profile-json/");
-    // print("Line 35");
-    // print(response);
-    // var url = Uri.parse('http://localhost:8000/account/get-profile-json/');
-    // var response = await http.get(
-    //   url,
-    //   headers: {"Content-Type": "application/json"},
-    // ).catchError((e){print(e);});
-    // print(url);
-    // print(response.body);
-//   var data;
-//   print("Line 39");
-//   // Directly decode response.body
-//   try{
-
-//   print(Profile.fromJson(response).user.username);
-// }
-//   catch(e){
-//     print(e);
-//   }
-
-//   print("Line 42");
-
-//     // melakukan konversi data json menjadi object Product
-//     List<Profile> list_profile = [];
-//     for (var d in data) {
-//       if (d != null) {
-//         list_profile.add(Profile.fromJson(d));
-//       }
-//     }
-    // String jsonString =
-    //     '{"id":1,"user":{"id":1,"password":"easy","last_login":"2023-12-07T05:25:31.329717Z","is_superuser":false,"username":"test3user","first_name":"","last_name":"","email":"","is_staff":false,"is_active":true,"date_joined":"2023-11-28T03:16:15.571250Z","role":2,"groups":[],"user_permissions":[]},"profile_picture_url":"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png","limit_rent":10}';
-
     Profile profile = Profile.fromJson(response);
     return profile;
-    // return Future.delayed(Duration(seconds: 1), () {
-    // });
   }
 
   @override
@@ -256,7 +224,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                               onPressed: () {
-                                // Button click logic
+                                Navigator.pushReplacement(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return ChangePasswordScreen();
+                                }));
                               },
                               child: Row(
                                 mainAxisAlignment:
@@ -283,7 +254,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               onPressed: () async {
                                 Navigator.pushReplacement(context,
                                     MaterialPageRoute(builder: (context) {
-                                  return LoginScreen();
+                                  return RegisterScreen();
                                 }));
 
                                 request.logout(

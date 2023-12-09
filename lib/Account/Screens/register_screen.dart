@@ -90,41 +90,40 @@ class _RegisterMobileScreen extends State<RegisterMobileScreen> {
             children: [
               Container(
                 padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    border: Border.all(),
-                    borderRadius: BorderRadius.circular(20)),
                 child: TextField(
                   controller: _usernameController,
                   decoration: const InputDecoration(
-                    hintText: 'Ketik username kamu di sini...',
-                    labelText: 'Username',
-                    border: InputBorder.none,
-                  ),
+                      hintText: 'Ketik username kamu di sini...',
+                      labelText: 'Username',
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                      ),
+                      labelStyle: TextStyle(
+                        color: Colors.grey,
+                      )),
                 ),
               ),
               const SizedBox(height: 20),
               Container(
                   padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(20)),
                   child: TextField(
                     obscureText: visiblePassword,
                     enableSuggestions: false,
                     autocorrect: false,
                     controller: _passwordController,
                     decoration: const InputDecoration(
-                      hintText: 'Ketik kata sandi kamu di sini...',
-                      labelText: 'Kata sandi',
-                      border: InputBorder.none,
-                    ),
+                        hintText: 'Ketik kata sandi kamu di sini...',
+                        labelText: 'Kata sandi',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
+                        labelStyle: TextStyle(
+                          color: Colors.grey,
+                        )),
                   )),
               const SizedBox(height: 20),
               Container(
                 padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    border: Border.all(),
-                    borderRadius: BorderRadius.circular(20)),
                 child: DropdownButton(
                   // Initial Value
                   value: dropdownvalue,
@@ -164,6 +163,9 @@ class _RegisterMobileScreen extends State<RegisterMobileScreen> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: Color.fromRGBO(255, 80, 03, 1)),
                       child: const Text('Daftar'),
                       onPressed: () async {
                         String username = _usernameController.text;
@@ -203,42 +205,19 @@ class _RegisterMobileScreen extends State<RegisterMobileScreen> {
                           ScaffoldMessenger.of(context)
                             ..hideCurrentSnackBar()
                             ..showSnackBar(SnackBar(
-                                content:
-                                    Text("Berhasil mendaftar $username")));
+                                content: Text("Berhasil mendaftar $username")));
+                        } else if (response.statusCode == 500) {
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(SnackBar(
+                                content: Text(
+                                    "Maaf, username $username telah terdaftar")));
                         } else {
-                          print("gagal line 194");
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(SnackBar(
+                                content: Text("Maaf, pendaftaran gagal!")));
                         }
-                        // if (request.loggedIn) {
-                        //   String message = response['message'];
-                        //   String uname = response['username'];
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) =>
-                        //           ProfilePage(title: "Test")),
-                        // );
-                          // ScaffoldMessenger.of(context)
-                          //   ..hideCurrentSnackBar()
-                          //   ..showSnackBar(SnackBar(
-                          //       content:
-                          //           Text("$message Selamat datang, $uname.")));
-                        // } else {
-                        //   showDialog(
-                        //     context: context,
-                        //     builder: (context) => AlertDialog(
-                        //       title: const Text('Login Gagal'),
-                        //       content: Text(response['message']),
-                        //       actions: [
-                        //         TextButton(
-                        //           child: const Text('OK'),
-                        //           onPressed: () {
-                        //             Navigator.pop(context);
-                        //           },
-                        //         ),
-                        //       ],
-                        //     ),
-                        //   );
-                        // }
                       },
                     ),
                   ),
@@ -250,9 +229,12 @@ class _RegisterMobileScreen extends State<RegisterMobileScreen> {
         const SizedBox(height: 20),
         Center(
             child: TextButton(
-          child: const Text("Sudah punya akun"),
+          child: const Text(
+            "Sudah punya akun",
+            style: TextStyle(color: Color.fromRGBO(255, 80, 03, 1)),
+          ),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
               return const LoginScreen();
             }));
           },
