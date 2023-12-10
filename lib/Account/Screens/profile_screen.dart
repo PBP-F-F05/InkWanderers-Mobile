@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Screens/change_password_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/login_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
+import 'package:inkwanderers_mobile/collection/screens/collections.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:inkwanderers_mobile/main.dart';
@@ -120,7 +121,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 icon: Icon(Icons.account_circle), label: 'Profile'),
           ],
           onTap: (i) {
-            if (i == 4) {
+            if (i == 0) {
+               Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const CollectionsPage(),
+                                  ));
+            }
+            else if (i == 4) {
               showModalBottomSheet(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
@@ -278,6 +286,7 @@ class _ProfilePageState extends State<ProfilePage> {
               );
             }
           },
-        ));
+        )
+        );
   }
 }
