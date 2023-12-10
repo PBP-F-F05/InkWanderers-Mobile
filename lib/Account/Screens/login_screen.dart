@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-// import 'package:email_validator/email_validator.dart';
-
-// import 'package:yuk_belanja/Model/account.dart';
-// import 'package:yuk_belanja/Model/account_saved.dart';
-// import 'package:yuk_belanja/Screen/home_screen.dart';
-// import 'package:yuk_belanja/Screen/sign_up_screen.dart';
-  import 'package:inkwanderers_mobile/account/screens/profile_screen.dart';
-  import 'package:flutter/material.dart';
-  import 'package:pbp_django_auth/pbp_django_auth.dart';
-  import 'package:provider/provider.dart';
+import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
+import 'package:inkwanderers_mobile/account/screens/profile_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -85,34 +80,36 @@ class _LoginMobileScreen extends State<LoginMobileScreen> {
             children: [
               Container(
                 padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    border: Border.all(),
-                    borderRadius: BorderRadius.circular(20)),
                 child: TextField(
                   controller: _usernameController,
                   decoration: const InputDecoration(
-                    hintText: 'Ketik username kamu di sini...',
-                    labelText: 'Username',
-                    border: InputBorder.none,
-                  ),
+                      hintText: 'Ketik username kamu di sini...',
+                      labelText: 'Username',
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                      ),
+                      labelStyle: TextStyle(
+                        color: Colors.grey,
+                      )),
                 ),
               ),
               const SizedBox(height: 20),
               Container(
                   padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(20)),
                   child: TextField(
                     obscureText: visiblePassword,
                     enableSuggestions: false,
                     autocorrect: false,
                     controller: _passwordController,
                     decoration: const InputDecoration(
-                      hintText: 'Ketik kata sandi kamu di sini...',
-                      labelText: 'Kata sandi',
-                      border: InputBorder.none,
-                    ),
+                        hintText: 'Ketik kata sandi kamu di sini...',
+                        labelText: 'Kata sandi',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
+                        labelStyle: TextStyle(
+                          color: Colors.grey,
+                        )),
                   )),
               Row(children: [
                 Checkbox(
@@ -130,16 +127,19 @@ class _LoginMobileScreen extends State<LoginMobileScreen> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: Color.fromRGBO(255, 80, 03, 1)),
                       child: const Text('Masuk'),
                       onPressed: () async {
-                                  String username = _usernameController.text;
-                                  String password = _passwordController.text;
+                        String username = _usernameController.text;
+                        String password = _passwordController.text;
 
                                   // Cek kredensial
                                   // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                                   // Untuk menyambungkan Android emulator dengan Django pada localhost,
                                   // gunakan URL http://10.0.2.2/
-                                  final response = await request.login("http://localhost:8000/auth/login/", {
+                                  final response = await request.login("https://inkwanderers.my.id/auth/login/", {
                                   'username': username,
                                   'password': password,
                                   });
@@ -215,17 +215,18 @@ class _LoginMobileScreen extends State<LoginMobileScreen> {
         const SizedBox(height: 20),
         Center(
             child: TextButton(
-          child: const Text("Belum punya akun"),
+          child: const Text(
+            "Belum punya akun",
+            style: TextStyle(color: Color.fromRGBO(255, 80, 03, 1)),
+          ),
           onPressed: () {
-            // Navigator.push(context, MaterialPageRoute(builder: (context) {
-            //   return const SignUpScreen();
-            // }));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+              return const RegisterScreen();
+            }));
           },
         )),
         const SizedBox(height: 150),
       ],
     ));
   }
-
-
 }
