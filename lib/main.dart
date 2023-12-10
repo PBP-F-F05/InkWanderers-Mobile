@@ -1,35 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:inkwanderers_mobile/Account/Screens/login_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/profile_Screen.dart';
-
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-    const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
-    @override
-    Widget build(BuildContext context) {
-        return Provider(
-            create: (_) {
-                CookieRequest request = CookieRequest();
-                return request;
-            },
-            child: MaterialApp(
-                title: 'Flutter App',
-                theme: ThemeData(
-                    colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
-                    useMaterial3: true,
-                    primaryColor: Color.fromRGBO(05, 10, 48, 1)
-                ),
-                home:const LoginScreen(),
-            )
-        );
-    }
+  @override
+  Widget build(BuildContext context) {
+    return Provider(
+        create: (_) {
+          CookieRequest request = CookieRequest();
+          return request;
+        },
+        child: MaterialApp(
+          title: 'Flutter App',
+          theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+              useMaterial3: true,
+              primaryColor: Color.fromRGBO(05, 10, 48, 1),
+              inputDecorationTheme: const InputDecorationTheme(
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color.fromRGBO(255, 80, 03, 1))),
+                  enabledBorder: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color.fromRGBO(255, 80, 03, 0.5))),
+                  border: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color.fromRGBO(255, 80, 03, 0.5)))),
+              dropdownMenuTheme: const DropdownMenuThemeData(
+                  inputDecorationTheme: InputDecorationTheme(
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(255, 80, 03, 1))),
+                      enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(255, 80, 03, 0.5))),
+                      border: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(255, 80, 03, 0.5)))))),
+              
+
+          home: const RegisterScreen(),
+        ));
+  }
 }
 
 class MyHomePage extends StatefulWidget {
