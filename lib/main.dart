@@ -4,7 +4,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:inkwanderers_mobile/Account/Screens/login_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/profile_Screen.dart';
-
+// Run biar bisa tampil gambar di chrome: flutter run -d chrome --web-renderer html
 void main() {
   runApp(const MyApp());
 }

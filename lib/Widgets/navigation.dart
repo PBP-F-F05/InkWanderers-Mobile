@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Screens/change_password_screen.dart';
+import 'package:inkwanderers_mobile/Account/Screens/history_book_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/profile_Screen.dart';
+import 'package:inkwanderers_mobile/Account/Screens/rank_book_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
 import 'package:inkwanderers_mobile/collection/screens/collections.dart';
 import 'package:inkwanderers_mobile/collection/screens/menu.dart';
@@ -106,6 +108,10 @@ class _NavigationState extends State<Navigation> {
                           ),
                           onPressed: () {
                             // Button click logic
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const HistoryBookPage();
+                            }));
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -130,8 +136,12 @@ class _NavigationState extends State<Navigation> {
                           ),
                           onPressed: () {
                             // Button click logic
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const RankBookPage();
+                            }));
                           },
-                          child: Row(
+                          child:const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Ranking Buku pernah Dipinjam'),
