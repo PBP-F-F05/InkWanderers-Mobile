@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:inkwanderers_mobile/catalogue/screens/admin_catalogue.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:inkwanderers_mobile/screens/menu.dart';
 
 class AddBookForm extends StatefulWidget {
   const AddBookForm({super.key});
@@ -215,7 +215,7 @@ class _AddBookFormState extends State<AddBookForm> {
                             ));
                             Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(builder: (context) => MyHomePage()),
+                                MaterialPageRoute(builder: (context) => CataloguePageAdmin()),
                             );
                         } else {
                             ScaffoldMessenger.of(context)

@@ -5,8 +5,8 @@ import 'package:inkwanderers_mobile/Account/Screens/change_password_screen.dart'
 import 'package:inkwanderers_mobile/Account/Screens/profile_Screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
 import 'package:inkwanderers_mobile/collection/screens/collections.dart';
-import 'package:inkwanderers_mobile/collection/screens/menu.dart';
-import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
+import 'package:inkwanderers_mobile/catalogue/screens/book_catalogue.dart';
+import 'package:inkwanderers_mobile/catalogue/screens/admin_catalogue.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -44,10 +44,16 @@ class _NavigationState extends State<Navigation> {
       ],
       onTap: (i) {
         if (i == 0) {
-          Navigator.push(
+          Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => const CollectionsPage(),
+              ));
+        } else if (i == 2) {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CataloguePageAdmin(),
               ));
         } else if (i == 4) {
           showModalBottomSheet(
