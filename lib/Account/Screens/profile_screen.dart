@@ -36,7 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
     // print("Line 33");
     final response = await request
-        .get("https://inkwanderers.my.id/account/get-profile-json/");
+        .get("http://127.0.0.1:8000/account/get-profile-json/");
     Profile profile = Profile.fromJson(response);
     return profile;
   }
