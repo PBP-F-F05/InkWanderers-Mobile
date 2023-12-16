@@ -3,6 +3,7 @@ import 'package:inkwanderers_mobile/Account/Screens/change_password_screen.dart'
 import 'package:inkwanderers_mobile/Account/Screens/login_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
 import 'package:inkwanderers_mobile/collection/screens/collections.dart';
+import 'package:inkwanderers_mobile/reviews/screens/my_reviews.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:inkwanderers_mobile/main.dart';
@@ -35,7 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
     // print("Line 33");
     final response = await request
-        .get("https://inkwanderers.my.id/account/get-profile-json/");
+        .get("http://localhost:8000/account/get-profile-json/");
     Profile profile = Profile.fromJson(response);
     return profile;
   }
@@ -126,6 +127,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => const CollectionsPage(),
+                                  ));
+            }
+            else if (i == 1) {
+              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const MyReviewsPage(),
                                   ));
             }
             else if (i == 4) {

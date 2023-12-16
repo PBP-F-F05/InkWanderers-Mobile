@@ -39,6 +39,8 @@ class Fields {
     String thumbnail;
     String description;
     int publishedYear;
+    int review_points;
+    int review_count;
 
     Fields({
         required this.title,
@@ -47,6 +49,8 @@ class Fields {
         required this.thumbnail,
         required this.description,
         required this.publishedYear,
+        required this.review_count,
+        required this.review_points
     });
 
     factory Fields.fromJson(Map<String, dynamic> json) => Fields(
@@ -56,6 +60,8 @@ class Fields {
         thumbnail: json["thumbnail"],
         description: json["description"],
         publishedYear: json["published_year"],
+        review_count: json["review_count"],
+        review_points: json["review_points"]
     );
 
     Map<String, dynamic> toJson() => {
@@ -65,5 +71,7 @@ class Fields {
         "thumbnail": thumbnail,
         "description": description,
         "published_year": publishedYear,
+        "review_count": review_count,
+        "review_points": review_points
     };
 }

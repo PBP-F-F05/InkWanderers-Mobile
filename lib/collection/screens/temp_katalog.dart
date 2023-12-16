@@ -3,12 +3,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+// import 'package:inkwanderers_mobile/reviews/models/review.dart';
 import 'package:inkwanderers_mobile/collection/models/book.dart';
 import 'package:inkwanderers_mobile/collection/widgets/left_drawer.dart';
 import 'package:inkwanderers_mobile/collection/widgets/navigation.dart';
+import 'package:inkwanderers_mobile/reviews/screens/addreview_form.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-
+import 'package:inkwanderers_mobile/reviews/screens/book_review.dart';
 class LihatBuku extends StatefulWidget {
   const LihatBuku({Key? key}) : super(key: key);
 
@@ -17,15 +19,17 @@ class LihatBuku extends StatefulWidget {
 }
 
 class _LihatBukuState extends State<LihatBuku> {
-  Future<List<Book>> fetchBooks(request) async {
+  Future<List<Book>> fetchBooks(CookieRequest request) async {
     var response = await request.get(
-      'https://InkWanderers.my.id/get_books_json/',
+      'http://localhost:8000/get_books_json/'
     );
-
+    // print(response);
     List<Book> listItem = [];
     for (var d in response) {
       if (d != null) {
-        listItem.add(Book.fromJson(d));
+        // print(d);
+        Book b = Book.fromJson(d);
+        listItem.add(b);
       }
     }
     return listItem;
@@ -59,7 +63,16 @@ class _LihatBukuState extends State<LihatBuku> {
                 } else {
                   return ListView.builder(
                       itemCount: snapshot.data!.length,
-                      itemBuilder: (_, index) => Container(
+                      itemBuilder: (_, index) => InkWell(
+                        onTap:() {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BookReviewPage(book: snapshot.data![index]),
+                            ),
+                          );
+                        },
+                        child: Container(
                             margin: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 12),
                             padding: const EdgeInsets.all(20.0),
@@ -89,7 +102,7 @@ class _LihatBukuState extends State<LihatBuku> {
                                     ElevatedButton(
                                       onPressed: () async {
                                         var response = await request.postJson(
-                                            'http://127.0.0.1:8000/collection/add_collection_flutter/',
+                                            'http://localhost:8000/collection/add_collection_flutter/',
                                             jsonEncode({
                                               "pk": snapshot.data![index].pk
                                                   .toString(),
@@ -113,11 +126,23 @@ class _LihatBukuState extends State<LihatBuku> {
                                       },
                                       child: const Text('Add to Collection'),
                                     ),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => ReviewFormPage(book: snapshot.data![index]),
+                                          ),
+                                        );
+                                      },
+                                      child: const Text('Add review'),
+                                    ),
                                   ],
                                 )
                               ],
                             ),
-                          ));
+                          )
+                      ));
                 }
               }
             }));
