@@ -9,6 +9,8 @@ import 'package:inkwanderers_mobile/collection/screens/menu.dart';
 import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:inkwanderers_mobile/bookmarks/screens/bookmark_page.dart';
+
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -38,7 +40,10 @@ class _NavigationState extends State<Navigation> {
           icon: Icon(Icons.home),
           label: 'Home',
         ),
-        BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Bookmark'),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.bookmark), 
+          label: 'Bookmark'
+          ),
         BottomNavigationBarItem(
             icon: Icon(Icons.account_circle), label: 'Profile'),
       ],
@@ -49,7 +54,14 @@ class _NavigationState extends State<Navigation> {
               MaterialPageRoute(
                 builder: (context) => const CollectionsPage(),
               ));
-        } else if (i == 4) {
+        } else if (i == 3){
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const BookmarksPage(),
+              ));
+        }
+        else if (i == 4) {
           showModalBottomSheet(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

@@ -83,7 +83,22 @@ class _LihatBukuState extends State<LihatBuku> {
                                 Row(
                                   children: [
                                     ElevatedButton(
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        var response = await request.postJson(
+                                            'http://127.0.0.1:8000/bookmarks/bookmark_book_flutter/',
+                                            jsonEncode({
+                                              "pk": snapshot.data![index].pk
+                                                  .toString(),
+                                            }));
+                                       
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const LihatBuku(),
+                                            ),
+                                          );
+                                      },
                                       child: const Text('Add to Bookmark'),
                                     ),
                                     ElevatedButton(
@@ -94,7 +109,6 @@ class _LihatBukuState extends State<LihatBuku> {
                                               "pk": snapshot.data![index].pk
                                                   .toString(),
                                             }));
-
                                         if (response["status"] == false) {
                                           ScaffoldMessenger.of(context)
                                             ..hideCurrentSnackBar()

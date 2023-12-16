@@ -184,7 +184,7 @@ class _RegisterMobileScreen extends State<RegisterMobileScreen> {
                         // gunakan URL http://10.0.2.2/
                         print("Line 180");
                         final Uri url = Uri.parse(
-                            "https://inkwanderers.my.id/auth/register/");
+                            "http://127.0.0.1:8000/auth/register/");
 
                         final response = await http.post(
                           url,
