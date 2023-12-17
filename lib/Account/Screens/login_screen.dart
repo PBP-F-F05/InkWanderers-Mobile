@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
                 Expanded(
                   child: Center(
                     child: Text(
-                      'Ayo mulai belanja',
+                      'InkWanderers',
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
