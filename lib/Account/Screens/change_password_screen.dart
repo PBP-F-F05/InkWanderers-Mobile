@@ -179,7 +179,7 @@ class _ChangePasswordMobileScreen extends State<ChangePasswordMobileScreen> {
                         // Untuk menyambungkan Android emulator dengan Django pada localhost,
                         // gunakan URL http://10.0.2.2/
                         final response = await request.post(
-                            "https://inkwanderers.my.id/account/change_password_flutter/",
+                            "http://127.0.0.1:8000/account/change_password_flutter/",
                             {
                               'old_password': old_password,
                               'new_password1': new_password1,

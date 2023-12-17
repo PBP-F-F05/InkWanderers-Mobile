@@ -19,7 +19,7 @@ class LihatBuku extends StatefulWidget {
 class _LihatBukuState extends State<LihatBuku> {
   Future<List<Book>> fetchBooks(request) async {
     var response = await request.get(
-      'https://InkWanderers.my.id/get_books_json/',
+      'http://127.0.0.1:8000/get_books_json/',
     );
 
     List<Book> listItem = [];

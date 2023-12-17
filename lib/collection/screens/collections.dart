@@ -17,7 +17,7 @@ class CollectionsPage extends StatefulWidget {
 class _CollectionsPageState extends State<CollectionsPage> {
   Future<List<Book>> fetchProduct(request) async {
     var response = await request
-        .get("https://InkWanderers.my.id/collection/collections_flutter/");
+        .get("http://127.0.0.1:8000/collection/collections_flutter/");
 
     List<Book> listCollection = [];
     for (var d in response) {

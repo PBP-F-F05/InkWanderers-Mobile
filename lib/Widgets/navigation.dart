@@ -208,7 +208,7 @@ class _NavigationState extends State<Navigation> {
                             }));
 
                             request.logout(
-                                "https://inkwanderers.my.id/account/logout_flutter/");
+                                "http://127.0.0.1:8000/account/logout_flutter/");
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
