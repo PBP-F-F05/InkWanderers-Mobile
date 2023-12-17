@@ -9,13 +9,14 @@ import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
 import 'package:inkwanderers_mobile/collection/screens/collections.dart';
 import 'package:inkwanderers_mobile/collection/screens/menu.dart';
 import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
+import 'package:inkwanderers_mobile/reviews/screens/my_reviews.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:inkwanderers_mobile/bookmarks/screens/bookmark_page.dart';
 
-
 class Navigation extends StatefulWidget {
-  const Navigation({super.key});
+  final int position;
+  const Navigation({super.key, required this.position});
 
   @override
   _NavigationState createState() => _NavigationState();
@@ -26,7 +27,7 @@ class _NavigationState extends State<Navigation> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return BottomNavigationBar(
-      currentIndex: 4,
+      currentIndex: widget.position,
       selectedItemColor: Color.fromRGBO(255, 80, 03, 1),
       unselectedItemColor: Color.fromRGBO(05, 10, 48, 1),
       items: const [
@@ -42,10 +43,7 @@ class _NavigationState extends State<Navigation> {
           icon: Icon(Icons.home),
           label: 'Home',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.bookmark), 
-          label: 'Bookmark'
-          ),
+        BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Bookmark'),
         BottomNavigationBarItem(
             icon: Icon(Icons.account_circle), label: 'Profile'),
       ],
@@ -56,14 +54,25 @@ class _NavigationState extends State<Navigation> {
               MaterialPageRoute(
                 builder: (context) => const CollectionsPage(),
               ));
-        } else if (i == 3){
+        } else if (i == 1) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MyReviewsPage(),
+              ));
+        } else if (i == 2) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const LihatBuku(),
+              ));
+        } else if (i == 3) {
           Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const BookmarksPage(),
               ));
-        }
-        else if (i == 4) {
+        } else if (i == 4) {
           showModalBottomSheet(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -94,7 +103,9 @@ class _NavigationState extends State<Navigation> {
                           onPressed: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return ProfilePage(title: 'a',);
+                              return ProfilePage(
+                                title: 'a',
+                              );
                             }));
                           },
                           child: Row(
@@ -153,7 +164,7 @@ class _NavigationState extends State<Navigation> {
                               return const RankBookPage();
                             }));
                           },
-                          child:const Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Ranking Buku pernah Dipinjam'),
@@ -202,15 +213,17 @@ class _NavigationState extends State<Navigation> {
                             ),
                           ),
                           onPressed: () async {
-                            Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (context) {
-                              return RegisterScreen();
-                            }));
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const RegisterScreen()),
+                                (Route<dynamic> route) => false);
 
                             request.logout(
                                 "http://127.0.0.1:8000/account/logout_flutter/");
                           },
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Logout'),

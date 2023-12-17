@@ -35,7 +35,7 @@ class _CollectionsPageState extends State<CollectionsPage> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      bottomNavigationBar: const Navigation(),
+      bottomNavigationBar: const Navigation(position: 0,),
       body: SingleChildScrollView(
         child: Column(
           children: [

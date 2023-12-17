@@ -27,8 +27,6 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
         listCollection.add(historyBookToBook);
       }
     }
-    print("Line 36");
-    print(listCollection.length);
     return listCollection;
   }
 
@@ -39,7 +37,7 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      bottomNavigationBar: const Navigation(),
+      bottomNavigationBar: const Navigation(position: 4,),
       body: SingleChildScrollView(
         child: Column(
           children: [

@@ -3,7 +3,8 @@ import 'package:inkwanderers_mobile/Account/Screens/change_password_screen.dart'
 import 'package:inkwanderers_mobile/Account/Screens/login_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
 import 'package:inkwanderers_mobile/collection/screens/collections.dart';
-import 'package:inkwanderers_mobile/widgets/navigation.dart';
+import 'package:inkwanderers_mobile/Widgets/navigation.dart';
+import 'package:inkwanderers_mobile/reviews/screens/my_reviews.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:inkwanderers_mobile/main.dart';
@@ -99,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 }
               }
             }),
-        bottomNavigationBar: const Navigation()
+          bottomNavigationBar:  const Navigation(position: 4,),
         );
   }
 }
