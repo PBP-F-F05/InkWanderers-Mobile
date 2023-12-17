@@ -37,7 +37,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      bottomNavigationBar: const Navigation(),
+      bottomNavigationBar: const Navigation(position: 3,),
       body: SingleChildScrollView(
         child: Stack(
           alignment: Alignment.center,

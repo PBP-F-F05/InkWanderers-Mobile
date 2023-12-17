@@ -46,7 +46,7 @@ class _RankBookPageState extends State<RankBookPage> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      bottomNavigationBar: const Navigation(),
+      bottomNavigationBar: const Navigation(position: 4,),
       body: SingleChildScrollView(
         child: Column(
           children: [
