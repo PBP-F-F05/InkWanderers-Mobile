@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:inkwanderers_mobile/catalogue/screens/admin_catalogue.dart';
+import 'package:inkwanderers_mobile/Catalogue/screens/admin_catalogue.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 

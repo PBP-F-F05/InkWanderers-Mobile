@@ -1,9 +1,8 @@
 // ignore_for_file: sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:inkwanderers_mobile/catalogue/models/book.dart';
-import 'package:inkwanderers_mobile/catalogue/screens/admin_catalogue.dart';
-import 'package:inkwanderers_mobile/collection/widgets/review_modal.dart';
+import 'package:inkwanderers_mobile/Catalogue/models/book.dart';
+import 'package:inkwanderers_mobile/Catalogue/screens/admin_catalogue.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import "dart:convert";
@@ -12,15 +11,6 @@ class BookCardAdmin extends StatelessWidget {
   final Book book;
 
   const BookCardAdmin(this.book, {super.key});
-
-  // void _reviewForm(BuildContext context, request) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return ReviewModalPage(book);
-  //     },
-  //   );
-  // }
 
   void _showBookDetails(BuildContext context, request) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -37,14 +27,16 @@ class BookCardAdmin extends StatelessWidget {
             children: [
               Text(book.fields.title,
                   style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 20),
+                      fontSize: 18, fontWeight: FontWeight.bold),
+                      overflow: TextOverflow.ellipsis,
+                        maxLines: 1),
+              const SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
                     width: screenWidth * 0.4,
-                    height: screenHeight * 0.4,
+                    height: screenHeight * 0.41,
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 233, 161, 17),
                       borderRadius: BorderRadius.circular(10),
@@ -101,19 +93,17 @@ class BookCardAdmin extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               SizedBox(
-                width: screenWidth * 0.4,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Row(
+                    Row(
                       children: [
-                        Icon(Icons.star),
-                        Text("5"),
-                      ],
-                    ),
-                    SizedBox(
-                      child: ElevatedButton(
+                        Icon(Icons.star, size: 16),
+                        Text("${(book.fields.reviewPoints.toDouble()/book.fields.reviewCount.toDouble()).toStringAsFixed(1)}",
+                          style: TextStyle(fontSize: 11)
+                        ),
+                        ElevatedButton(
                           onPressed: () async {
                             final response = await request.postJson(
                             "http://127.0.0.1:8000/remove-flutter/",
@@ -138,7 +128,9 @@ class BookCardAdmin extends StatelessWidget {
                                 ));
                             }
                         },
-                        child: const Text("Delete Book")),
+                        child: const Text("Delete Book",style: TextStyle(fontSize: 11)
+                        )),
+                      ],
                     ),
                   ],
                 ),
@@ -202,18 +194,24 @@ class BookCardAdmin extends StatelessWidget {
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
                         ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
-                      const SizedBox(height: 5),
+                      const SizedBox(height: 3),
                       Text(
                         book.fields.authors,
                         textAlign: TextAlign.center,
                         style: const TextStyle(fontSize: 14.0),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
-                      const SizedBox(height: 5),
+                      const SizedBox(height: 3),
                       Text(
                         book.fields.categories,
                         textAlign: TextAlign.center,
                         style: const TextStyle(fontSize: 12.0),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
                     ],
                   ),

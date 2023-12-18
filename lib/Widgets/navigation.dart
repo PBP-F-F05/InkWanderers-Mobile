@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Screens/change_password_screen.dart';
+import 'package:inkwanderers_mobile/Account/Screens/history_book_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/profile_Screen.dart';
+import 'package:inkwanderers_mobile/Account/Screens/rank_book_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
 import 'package:inkwanderers_mobile/collection/screens/collections.dart';
 import 'package:inkwanderers_mobile/collection/screens/collections_admin.dart';
@@ -13,9 +15,16 @@ import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'dart:convert';
+import 'package:inkwanderers_mobile/collection/screens/menu.dart';
+import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
+import 'package:inkwanderers_mobile/reviews/screens/my_reviews.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:inkwanderers_mobile/bookmarks/screens/bookmark_page.dart';
 
 class Navigation extends StatefulWidget {
-  const Navigation({super.key});
+  final int position;
+  const Navigation({super.key, required this.position});
 
   @override
   _NavigationState createState() => _NavigationState();
@@ -26,36 +35,62 @@ class _NavigationState extends State<Navigation> {
     var response = await request.get("http://127.0.0.1:8000/get-role/");
         if (index == 0) {
           if (response['status'] == 'admin') {
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const CollectionsPageAdmin()),
             );
           } 
 
           else {
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const CollectionsPage()),
             );
           }
         } 
+
+        else if (index == 1) {
+          if (response['status'] == 'admin') {
+
+          }
+
+          else {
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MyReviewsPage()),
+            );
+          }
+        }
         
         else if (index == 2) {
           if (response['status'] == 'admin') {
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const CataloguePageAdmin()),
             );
           } 
           
           else {
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const CataloguePage()),
             );
           }
         } 
-        
+
+        else if (index == 3) {
+          if (response['status'] == 'admin') {
+
+          }
+
+          else {
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const BookmarksPage()),
+            );
+          }
+        }
+
         else if (index == 4) {
           showModalBottomSheet(
             shape:
@@ -87,7 +122,9 @@ class _NavigationState extends State<Navigation> {
                           onPressed: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return ProfilePage(title: 'a',);
+                              return ProfilePage(
+                                title: 'a',
+                              );
                             }));
                           },
                           child: Row(
@@ -113,6 +150,10 @@ class _NavigationState extends State<Navigation> {
                           ),
                           onPressed: () {
                             // Button click logic
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const HistoryBookPage();
+                            }));
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,8 +178,12 @@ class _NavigationState extends State<Navigation> {
                           ),
                           onPressed: () {
                             // Button click logic
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const RankBookPage();
+                            }));
                           },
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Ranking Buku pernah Dipinjam'),
@@ -187,15 +232,17 @@ class _NavigationState extends State<Navigation> {
                             ),
                           ),
                           onPressed: () async {
-                            Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (context) {
-                              return RegisterScreen();
-                            }));
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const RegisterScreen()),
+                                (Route<dynamic> route) => false);
 
                             request.logout(
                                 "http://127.0.0.1:8000/account/logout_flutter/");
                           },
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Logout'),
@@ -210,7 +257,7 @@ class _NavigationState extends State<Navigation> {
               );
             },
           );
-        }
+        } 
       }
 
   @override

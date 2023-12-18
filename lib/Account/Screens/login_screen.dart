@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
                 Expanded(
                   child: Center(
                     child: Text(
-                      'Ayo mulai belanja',
+                      'InkWanderers',
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
@@ -135,75 +135,47 @@ class _LoginMobileScreen extends State<LoginMobileScreen> {
                         String username = _usernameController.text;
                         String password = _passwordController.text;
 
-                                  // Cek kredensial
-                                  // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-                                  // Untuk menyambungkan Android emulator dengan Django pada localhost,
-                                  // gunakan URL http://10.0.2.2/
-                                  final response = await request.login("http://127.0.0.1:8000/auth/login/", {
-                                  'username': username,
-                                  'password': password,
-                                  });
-                      
-                                  if (request.loggedIn) {
-                                      String message = response['message'];
-                                      String uname = response['username'];
-                                      Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(builder: (context) => ProfilePage(title:"Test")),
-                                      );
-                                      ScaffoldMessenger.of(context)
-                                          ..hideCurrentSnackBar()
-                                          ..showSnackBar(
-                                              SnackBar(content: Text("$message Selamat datang, $uname.")));
-                                      } else {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) => AlertDialog(
-                                              title: const Text('Login Gagal'),
-                                              content:
-                                                  Text(response['message']),
-                                              actions: [
-                                                  TextButton(
-                                                      child: const Text('OK'),
-                                                      onPressed: () {
-                                                          Navigator.pop(context);
-                                                      },
-                                                  ),
-                                              ],
-                                          ),
-                                      );
-                                  }
-                      //   if (canUserLogin(_controllerEmail.text,
-                      //           _controllerPassword.text) ==
-                      //       true) {
-                      //     if (EmailValidator.validate(_controllerEmail.text) ==
-                      //         true) {
-                      //       Account loggedInUser = getLoggedInUser(_controllerEmail.text,
-                      //           _controllerPassword.text);
-                      //       Navigator.push(context,
-                      //           MaterialPageRoute(builder: (context) {
-                      //         return HomeScreen(loggedInUser:loggedInUser);
-                      //       }));
-                      //     } else {
-                      //       showDialog(
-                      //           context: context,
-                      //           builder: (context) {
-                      //             return const AlertDialog(
-                      //               content: Text(
-                      //                   'Maaf, email yang Anda masukkan tidak valid!'),
-                      //             );
-                      //           });
-                      //     }
-                      //   } else {
-                      //     showDialog(
-                      //         context: context,
-                      //         builder: (context) {
-                      //           return const AlertDialog(
-                      //             content: Text(
-                      //                 'Maaf, email atau password Anda salah'),
-                      //           );
-                      //         });
-                      //   }
+                        // Cek kredensial
+                        // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+                        // Untuk menyambungkan Android emulator dengan Django pada localhost,
+                        // gunakan URL http://10.0.2.2/
+                        final response = await request
+                            .login("http://127.0.0.1:8000/auth/login/", {
+                          'username': username,
+                          'password': password,
+                        });
+
+                        if (request.loggedIn) {
+                          String message = response['message'];
+                          String uname = response['username'];
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ProfilePage(title: "Test")),
+                          );
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(SnackBar(
+                                content:
+                                    Text("$message Selamat datang, $uname.")));
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text('Login Gagal'),
+                              content: Text(response['message']),
+                              actions: [
+                                TextButton(
+                                  child: const Text('OK'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        }
                       },
                     ),
                   ),

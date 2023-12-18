@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inkwanderers_mobile/catalogue/models/book.dart';
-import 'package:inkwanderers_mobile/catalogue/widgets/book_card.dart';
+import 'package:inkwanderers_mobile/Catalogue/models/book.dart';
+import 'package:inkwanderers_mobile/Catalogue/widgets/book_card.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +34,7 @@ class _CataloguePageState extends State<CataloguePage> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      bottomNavigationBar: const Navigation(),
+      bottomNavigationBar: const Navigation(position: 0,),
       body: SingleChildScrollView(
         child: Column(
           children: [

@@ -1,32 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:inkwanderers_mobile/Catalogue/models/book.dart';
-import 'package:inkwanderers_mobile/Catalogue/widgets/book_card_admin.dart';
-import 'package:inkwanderers_mobile/Catalogue/screens/add_book_form.dart';
+import 'package:inkwanderers_mobile/Account/Models/book_models.dart';
+import 'package:inkwanderers_mobile/Account/Widgets/rank_book_card.dart';
+// import 'package:inkwanderers_mobile/collection/models/book.dart';
+import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
+// import 'package:inkwanderers_mobile/collection/widgets/book_card.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:inkwanderers_mobile/Account/Models/book_models.dart';
 
-class CataloguePageAdmin extends StatefulWidget {
-  const CataloguePageAdmin({Key? key}) : super(key: key);
+class RankBookPage extends StatefulWidget {
+  const RankBookPage({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _CataloguePageAdminState createState() => _CataloguePageAdminState();
+  _RankBookPageState createState() => _RankBookPageState();
 }
 
-class _CataloguePageAdminState extends State<CataloguePageAdmin> {
-  Future<List<Book>> fetchProduct(request) async {
-    var response = await request
-        .get("http://127.0.0.1:8000/get_books_json/");
+class _RankBookPageState extends State<RankBookPage> {
+  TextEditingController _searchController = TextEditingController();
+  Future<List<RankBookToBook>>? _futureProducts;
 
-    List<Book> listCollection = [];
+  Future<List<RankBookToBook>> fetchProduct(CookieRequest request, String search) async {
+    var response = await request
+        .get("http://127.0.0.1:8000/account/get-rank-book-json-flutter/");
+    List<RankBookToBook> listCollection = [];
     for (var d in response) {
       if (d != null) {
-        listCollection.add(Book.fromJson(d));
+        listCollection.add(RankBookToBook.fromJson(d));
       }
     }
     return listCollection;
   }
+
+  // void handleInputChange(CookieRequest request, String input) {
+  //   setState(() {
+  //     _futureProducts = fetchProduct(request, input);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +46,7 @@ class _CataloguePageAdminState extends State<CataloguePageAdmin> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      bottomNavigationBar: const Navigation(position: 0,),
+      bottomNavigationBar: const Navigation(position: 4,),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -53,7 +64,7 @@ class _CataloguePageAdminState extends State<CataloguePageAdmin> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Admin's Catalogue",
+                      'Riwayat Buku',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 60,
@@ -65,24 +76,11 @@ class _CataloguePageAdminState extends State<CataloguePageAdmin> {
                 )
               ],
             ),
-            Container(
-              width: double.infinity, // Set width to the entire screen
-              padding: EdgeInsets.all(16.0),
-              child: ElevatedButton(
-                onPressed: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AddBookForm()),
-                  );
-                },
-                child: const Text("Add Book"),
-              ),
-            ),
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: FutureBuilder<List<Book>>(
-                future: fetchProduct(request),
+              child: FutureBuilder<List<RankBookToBook>>(
+                future:fetchProduct(request,"a"),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const CircularProgressIndicator();
@@ -90,12 +88,26 @@ class _CataloguePageAdminState extends State<CataloguePageAdmin> {
                       snapshot.data!.isEmpty ||
                       snapshot.hasError) {
                     return Column(
+
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        TextField(
+                          // onChanged: handleInputChange(request, "a"),
+                          controller: _searchController,
+                          decoration: const InputDecoration(
+                              hintText: 'Cari di sini ...',
+                              labelText: 'Pencarian',
+                              hintStyle: TextStyle(
+                                color: Colors.grey,
+                              ),
+                              labelStyle: TextStyle(
+                                color: Colors.grey,
+                              )),
+                        ),
                         const SizedBox(height: 100),
                         const Text(
-                          'No books available :(',
+                          'Borrow more books...',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 30,
@@ -106,6 +118,23 @@ class _CataloguePageAdminState extends State<CataloguePageAdmin> {
                         SizedBox(height: screenHeight * 0.05),
                         SizedBox(
                           width: screenWidth * 0.6,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const LihatBuku(),
+                                  ));
+                            },
+                            child: const Text(
+                              'Lihat Buku',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     );
@@ -122,7 +151,7 @@ class _CataloguePageAdminState extends State<CataloguePageAdmin> {
                       shrinkWrap: true,
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
-                        return BookCardAdmin(snapshot.data![index]);
+                        return RankBookToBookCard(snapshot.data![index]);
                       },
                     );
                   }

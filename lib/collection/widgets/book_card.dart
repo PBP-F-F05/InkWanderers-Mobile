@@ -184,7 +184,11 @@ class BookCard extends StatelessWidget {
                       Text(
                         book.fields.authors,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 14.0),
+                        style: const TextStyle(
+                          fontSize: 14.0,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
                     ],
                   ),
