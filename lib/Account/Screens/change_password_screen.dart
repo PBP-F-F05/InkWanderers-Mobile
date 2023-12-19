@@ -34,13 +34,6 @@ class ChangePasswordScreen extends StatelessWidget {
                 child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Center(
-                    child: Text(
-                      "Jagalah passwordmu!",
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                  ),
                   ChangePasswordMobileScreen()
                 ],
               ),
@@ -49,15 +42,6 @@ class ChangePasswordScreen extends StatelessWidget {
             return const Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Expanded(
-                  child: Center(
-                    child: Text(
-                      'Jagalah passwordmu!',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
                 Expanded(child: ChangePasswordMobileScreen())
               ],
             );
@@ -81,6 +65,7 @@ class _ChangePasswordMobileScreen extends State<ChangePasswordMobileScreen> {
   TextEditingController _new_password1 = TextEditingController();
   TextEditingController _new_password2 = TextEditingController();
 
+
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
@@ -98,6 +83,7 @@ class _ChangePasswordMobileScreen extends State<ChangePasswordMobileScreen> {
               Container(
                 padding: const EdgeInsets.all(5),
                 child: TextField(
+                  
                   obscureText: visiblePassword,
                   enableSuggestions: false,
                   autocorrect: false,
