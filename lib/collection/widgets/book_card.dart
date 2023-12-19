@@ -104,10 +104,10 @@ class BookCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Row(
+                    Row(
                       children: [
                         Icon(Icons.star),
-                        Text("5"),
+                        Text("${(book.fields.review_points.toDouble()/book.fields.review_count.toDouble()).toStringAsFixed(1)}"),
                       ],
                     ),
                     SizedBox(

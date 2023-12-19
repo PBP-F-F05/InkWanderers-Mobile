@@ -16,7 +16,7 @@ class CataloguePage extends StatefulWidget {
 class _CataloguePageState extends State<CataloguePage> {
   Future<List<Book>> fetchProduct(request) async {
     var response = await request
-        .get("http://127.0.0.1:8000/get_books_json/");
+        .get("https://inkwanderers.my.id/get_books_json/");
 
     List<Book> listCollection = [];
     for (var d in response) {

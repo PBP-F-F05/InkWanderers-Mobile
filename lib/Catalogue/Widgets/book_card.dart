@@ -109,7 +109,7 @@ class BookCard extends StatelessWidget {
                             onPressed: () async {
                               var response =
                                 await request.postJson(
-                                    'http://127.0.0.1:8000/collection/add_collection_flutter/',
+                                    'https://inkwanderers.my.id/collection/add_collection_flutter/',
                                     jsonEncode({
                                       "pk": book.pk.toString(),
                                     }));
@@ -140,7 +140,7 @@ class BookCard extends StatelessWidget {
                           onPressed: () async {
                             var response =
                               await request.postJson(
-                                  'http://127.0.0.1:8000/bookmarks/bookmark_book_flutter/',
+                                  'https://inkwanderers.my.id/bookmarks/bookmark_book_flutter/',
                                   jsonEncode({
                                     "pk": book.pk.toString(),
                                   }));

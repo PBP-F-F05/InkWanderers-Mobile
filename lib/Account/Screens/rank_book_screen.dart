@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Models/book_models.dart';
 import 'package:inkwanderers_mobile/Account/Widgets/rank_book_card.dart';
-// import 'package:inkwanderers_mobile/collection/models/book.dart';
-import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
-// import 'package:inkwanderers_mobile/collection/widgets/book_card.dart';
+import 'package:inkwanderers_mobile/Catalogue/screens/book_catalogue.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +21,7 @@ class _RankBookPageState extends State<RankBookPage> {
 
   Future<List<RankBookToBook>> fetchProduct(CookieRequest request, String search) async {
     var response = await request
-        .get("http://127.0.0.1:8000/account/get-rank-book-json-flutter/");
+        .get("https://inkwanderers.my.id/account/get-rank-book-json-flutter/");
     List<RankBookToBook> listCollection = [];
     for (var d in response) {
       if (d != null) {
@@ -32,12 +30,6 @@ class _RankBookPageState extends State<RankBookPage> {
     }
     return listCollection;
   }
-
-  // void handleInputChange(CookieRequest request, String input) {
-  //   setState(() {
-  //     _futureProducts = fetchProduct(request, input);
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -92,19 +84,6 @@ class _RankBookPageState extends State<RankBookPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        TextField(
-                          // onChanged: handleInputChange(request, "a"),
-                          controller: _searchController,
-                          decoration: const InputDecoration(
-                              hintText: 'Cari di sini ...',
-                              labelText: 'Pencarian',
-                              hintStyle: TextStyle(
-                                color: Colors.grey,
-                              ),
-                              labelStyle: TextStyle(
-                                color: Colors.grey,
-                              )),
-                        ),
                         const SizedBox(height: 100),
                         const Text(
                           'Borrow more books...',
@@ -123,11 +102,11 @@ class _RankBookPageState extends State<RankBookPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const LihatBuku(),
+                                    builder: (context) => const CataloguePage(),
                                   ));
                             },
                             child: const Text(
-                              'Lihat Buku',
+                              'Browse Books',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 20,

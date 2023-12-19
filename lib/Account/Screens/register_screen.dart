@@ -2,12 +2,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
-// import 'package:email_validator/email_validator.dart';
-
-// import 'package:yuk_belanja/Model/account.dart';
-// import 'package:yuk_belanja/Model/account_saved.dart';
-// import 'package:yuk_belanja/Screen/home_screen.dart';
-// import 'package:yuk_belanja/Screen/sign_up_screen.dart';
 import 'package:inkwanderers_mobile/account/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -184,7 +178,7 @@ class _RegisterMobileScreen extends State<RegisterMobileScreen> {
                         // gunakan URL http://10.0.2.2/
                         print("Line 180");
                         final Uri url = Uri.parse(
-                            "http://127.0.0.1:8000/auth/register/");
+                            "https://inkwanderers.my.id/auth/register/");
 
                         final response = await http.post(
                           url,

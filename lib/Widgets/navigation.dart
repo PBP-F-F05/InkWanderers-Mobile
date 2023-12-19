@@ -26,7 +26,7 @@ class Navigation extends StatefulWidget {
 
 class _NavigationState extends State<Navigation> {
   Future<void> handleNavigation(int index, CookieRequest request) async {
-    var response = await request.get("http://127.0.0.1:8000/get-role/");
+    var response = await request.get("https://inkwanderers.my.id/get-role/");
         if (index == 0) {
           if (response['status'] == 'admin') {
               ScaffoldMessenger.of(context)

@@ -2,8 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Models/book_models.dart';
-// import 'package:inkwanderers_mobile/collection/models/book.dart';
-// import 'package:inkwanderers_mobile/collection/widgets/review_modal.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -11,15 +9,6 @@ class HistoryBookToBookCard extends StatelessWidget {
   final HistoryBookToBook historyBookToBook;
 
   const HistoryBookToBookCard(this.historyBookToBook, {super.key});
-
-  // void _reviewForm(BuildContext context, request) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return ReviewModalPage(historyBook);
-  //     },
-  //   );
-  // }
 
   void _showBookDetails(BuildContext context, request) {
     double screenWidth = MediaQuery.of(context).size.width;

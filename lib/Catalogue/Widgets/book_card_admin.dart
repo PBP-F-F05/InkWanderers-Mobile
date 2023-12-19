@@ -106,7 +106,7 @@ class BookCardAdmin extends StatelessWidget {
                         ElevatedButton(
                           onPressed: () async {
                             final response = await request.postJson(
-                            "http://127.0.0.1:8000/remove-flutter/",
+                            "https://inkwanderers.my.id/remove-flutter/",
                             jsonEncode(<String, String>{
                                 'pk': book.pk.toString(),
 

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Models/book_models.dart';
 import 'package:inkwanderers_mobile/Account/Widgets/history_book_card.dart';
-// import 'package:inkwanderers_mobile/collection/models/book.dart';
-import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
-// import 'package:inkwanderers_mobile/collection/widgets/book_card.dart';
+import 'package:inkwanderers_mobile/Catalogue/screens/book_catalogue.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +17,7 @@ class HistoryBookPage extends StatefulWidget {
 class _HistoryBookPageState extends State<HistoryBookPage> {
   Future<List<HistoryBookToBook>> fetchProduct(request) async {
     var response = await request
-        .get("http://127.0.0.1:8000/account/get-history-book-json-flutter/");
+        .get("https://inkwanderers.my.id/account/get-history-book-json-flutter/");
     List<HistoryBookToBook> listCollection = [];
     for (var d in response) {
       if (d != null) {
@@ -100,11 +98,11 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const LihatBuku(),
+                                    builder: (context) => const CataloguePage(),
                                   ));
                             },
                             child: const Text(
-                              'Lihat Buku',
+                              'Browse Books',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 20,

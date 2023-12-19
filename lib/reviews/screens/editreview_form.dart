@@ -43,29 +43,6 @@ class _EditReviewFormPageState extends State<EditReviewFormPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Padding(
-                  //   padding: const EdgeInsets.all(8.0),
-                  //   child: TextFormField(
-                  //     decoration: InputDecoration(
-                  //       hintText: "Nama Produk",
-                  //       labelText: "Nama Produk",
-                  //       border: OutlineInputBorder(
-                  //         borderRadius: BorderRadius.circular(5.0),
-                  //       ),
-                  //     ),
-                  //     onChanged: (String? value) {
-                  //       setState(() {
-                  //         _ = value!;
-                  //       });
-                  //     },
-                  //     validator: (String? value) {
-                  //       if (value == null || value.isEmpty) {
-                  //         return "Nama tidak boleh kosong!";
-                  //       }
-                  //       return null;
-                  //     },
-                  //   ),
-                  // ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: const Text("Rating", style: TextStyle(fontSize: 20),),
@@ -124,7 +101,7 @@ class _EditReviewFormPageState extends State<EditReviewFormPage> {
                               // Kirim ke Django dan tunggu respons
                               // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                               final response = await request.postJson(
-                              "http://127.0.0.1:8000/reviews/edit-review-flutter/${widget.review.id}",
+                              "https://inkwanderers.my.id/reviews/edit-review-flutter/${widget.review.id}",
                               jsonEncode(<String, String>{
                                   // 'name': _name,
 
