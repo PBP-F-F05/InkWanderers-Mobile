@@ -7,20 +7,14 @@ import 'package:inkwanderers_mobile/Account/Screens/profile_Screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/rank_book_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
 import 'package:inkwanderers_mobile/collection/screens/collections.dart';
-import 'package:inkwanderers_mobile/collection/screens/collections_admin.dart';
 import 'package:inkwanderers_mobile/catalogue/screens/book_catalogue.dart';
 import 'package:inkwanderers_mobile/catalogue/screens/admin_catalogue.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
-import 'dart:convert';
-import 'package:inkwanderers_mobile/Widgets/navigation.dart';
-import 'dart:convert';
-import 'package:inkwanderers_mobile/collection/screens/menu.dart';
-import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
-import 'package:inkwanderers_mobile/reviews/screens/my_reviews.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
 import 'package:inkwanderers_mobile/bookmarks/screens/bookmark_page.dart';
+import 'package:inkwanderers_mobile/reviews/screens/my_reviews.dart';
+import 'package:inkwanderers_mobile/Widgets/navigation.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'dart:convert';
 
 class Navigation extends StatefulWidget {
   final int position;
@@ -35,10 +29,11 @@ class _NavigationState extends State<Navigation> {
     var response = await request.get("http://127.0.0.1:8000/get-role/");
         if (index == 0) {
           if (response['status'] == 'admin') {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const CollectionsPageAdmin()),
-            );
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(SnackBar(
+                    content:
+                        Text("This page is not available for Admins")));
           } 
 
           else {
@@ -51,7 +46,11 @@ class _NavigationState extends State<Navigation> {
 
         else if (index == 1) {
           if (response['status'] == 'admin') {
-
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(SnackBar(
+                    content:
+                        Text("This page is not available for Admins")));
           }
 
           else {
@@ -80,11 +79,15 @@ class _NavigationState extends State<Navigation> {
 
         else if (index == 3) {
           if (response['status'] == 'admin') {
-
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(SnackBar(
+                    content:
+                        Text("This page is not available for Admins")));
           }
 
           else {
-          Navigator.push(
+            Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const BookmarksPage()),
             );
@@ -149,11 +152,21 @@ class _NavigationState extends State<Navigation> {
                             ),
                           ),
                           onPressed: () {
+                            if (response['status'] == 'admin') {
+                                ScaffoldMessenger.of(context)
+                                  ..hideCurrentSnackBar()
+                                  ..showSnackBar(SnackBar(
+                                      content:
+                                          Text("This page is not available for Admins")));
+                            }
+
+                            else {
                             // Button click logic
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return const HistoryBookPage();
-                            }));
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return const HistoryBookPage();
+                              }));
+                            }
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -177,11 +190,21 @@ class _NavigationState extends State<Navigation> {
                             ),
                           ),
                           onPressed: () {
+                            if (response['status'] == 'admin') {
+                                ScaffoldMessenger.of(context)
+                                  ..hideCurrentSnackBar()
+                                  ..showSnackBar(SnackBar(
+                                      content:
+                                          Text("This page is not available for Admins")));
+                            }
+
+                            else {
                             // Button click logic
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                               return const RankBookPage();
                             }));
+                            }
                           },
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
