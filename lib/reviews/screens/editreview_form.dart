@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:inkwanderers_mobile/collection/models/book.dart';
-import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
+import 'package:inkwanderers_mobile/Catalogue/models/book.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/book_catalogue.dart';
 import 'package:inkwanderers_mobile/reviews/models/review.dart';
 import 'package:inkwanderers_mobile/reviews/screens/my_reviews.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';

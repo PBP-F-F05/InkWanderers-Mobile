@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:inkwanderers_mobile/collection/models/book.dart';
-import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
+import 'package:inkwanderers_mobile/Catalogue/models/book.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/book_catalogue.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -139,7 +139,7 @@ class _ReviewFormPageState extends State<ReviewFormPage> {
                                   ));
                                   Navigator.pushReplacement(
                                       context,
-                                      MaterialPageRoute(builder: (context) => LihatBuku()),
+                                      MaterialPageRoute(builder: (context) => CataloguePage()),
                                   );
                               } else {
                                   ScaffoldMessenger.of(context)

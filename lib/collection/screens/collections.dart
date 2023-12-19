@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/collection/models/book.dart';
+import 'package:inkwanderers_mobile/Catalogue/screens/book_catalogue.dart';
 import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
 import 'package:inkwanderers_mobile/collection/widgets/book_card.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
@@ -98,11 +99,11 @@ class _CollectionsPageState extends State<CollectionsPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const LihatBuku(),
+                                    builder: (context) => const CataloguePage(),
                                   ));
                             },
                             child: const Text(
-                              'Lihat Buku',
+                              'Browse Books',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 20,
