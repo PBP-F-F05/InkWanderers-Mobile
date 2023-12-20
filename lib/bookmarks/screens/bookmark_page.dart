@@ -2,9 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/collection/models/book.dart';
-import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
 import 'package:inkwanderers_mobile/bookmarks/widgets/book_item.dart';
-// import 'package:inkwanderers_mobile/bookmarks/widgets/navigation.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/book_catalogue.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
@@ -107,11 +106,11 @@ class _BookmarksPageState extends State<BookmarksPage> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const LihatBuku(),
+                                              const CataloguePage(),
                                         ));
                                   },
                                   child: const Text(
-                                    'Lihat Buku',
+                                    'Browse Books',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontSize: 20,

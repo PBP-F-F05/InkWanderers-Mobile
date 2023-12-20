@@ -68,7 +68,6 @@ class _ReviewModalPageState extends State<ReviewModalPage> {
                         );
                       }).toList(),
                       onChanged: (int? value) {
-                        // print("sebelum${rating}");
                         setState(() {
                           rating = value ?? 1;
                         });

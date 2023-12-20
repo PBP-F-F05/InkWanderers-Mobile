@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:inkwanderers_mobile/Account/Models/book_models.dart';
-import 'package:inkwanderers_mobile/Account/Widgets/history_book_card.dart';
-import 'package:inkwanderers_mobile/Catalogue/Screens/book_catalogue.dart';
+import 'package:inkwanderers_mobile/Catalogue/Models/book.dart';
+import 'package:inkwanderers_mobile/Catalogue/Widgets/book_card_admin.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/add_book_form.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
-class HistoryBookPage extends StatefulWidget {
-  const HistoryBookPage({Key? key}) : super(key: key);
+class CataloguePageAdmin extends StatefulWidget {
+  const CataloguePageAdmin({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _HistoryBookPageState createState() => _HistoryBookPageState();
+  _CataloguePageAdminState createState() => _CataloguePageAdminState();
 }
 
-class _HistoryBookPageState extends State<HistoryBookPage> {
-  Future<List<HistoryBookToBook>> fetchProduct(request) async {
+class _CataloguePageAdminState extends State<CataloguePageAdmin> {
+  Future<List<Book>> fetchProduct(request) async {
     var response = await request
-        .get("https://inkwanderers.my.id/account/get-history-book-json-flutter/");
-    List<HistoryBookToBook> listCollection = [];
+        .get("https://inkwanderers.my.id/get_books_json/");
+
+    List<Book> listCollection = [];
     for (var d in response) {
       if (d != null) {
-        HistoryBookToBook historyBookToBook = HistoryBookToBook.fromJson(d);
-        listCollection.add(historyBookToBook);
+        listCollection.add(Book.fromJson(d));
       }
     }
     return listCollection;
@@ -35,7 +35,7 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      bottomNavigationBar: const Navigation(position: 4,),
+      bottomNavigationBar: const Navigation(position: 0,),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -53,7 +53,7 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'Riwayat Buku',
+                      "Admin's Catalogue",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 60,
@@ -65,10 +65,23 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
                 )
               ],
             ),
+            Container(
+              width: double.infinity, // Set width to the entire screen
+              padding: EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddBookForm()),
+                  );
+                },
+                child: const Text("Add Book"),
+              ),
+            ),
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: FutureBuilder<List<HistoryBookToBook>>(
+              child: FutureBuilder<List<Book>>(
                 future: fetchProduct(request),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -82,7 +95,7 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
                       children: [
                         const SizedBox(height: 100),
                         const Text(
-                          'Borrow more books...',
+                          'No books available :(',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 30,
@@ -93,23 +106,6 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
                         SizedBox(height: screenHeight * 0.05),
                         SizedBox(
                           width: screenWidth * 0.6,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const CataloguePage(),
-                                  ));
-                            },
-                            child: const Text(
-                              'Browse Books',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
                         ),
                       ],
                     );
@@ -126,7 +122,7 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
                       shrinkWrap: true,
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
-                        return HistoryBookToBookCard(snapshot.data![index]);
+                        return BookCardAdmin(snapshot.data![index]);
                       },
                     );
                   }

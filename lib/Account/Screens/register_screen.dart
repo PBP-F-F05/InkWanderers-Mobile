@@ -2,17 +2,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
-// import 'package:email_validator/email_validator.dart';
-
-// import 'package:yuk_belanja/Model/account.dart';
-// import 'package:yuk_belanja/Model/account_saved.dart';
-// import 'package:yuk_belanja/Screen/home_screen.dart';
-// import 'package:yuk_belanja/Screen/sign_up_screen.dart';
-import 'package:inkwanderers_mobile/account/screens/profile_screen.dart';
+import 'package:inkwanderers_mobile/Account/Screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:inkwanderers_mobile/account/screens/login_Screen.dart';
+import 'package:inkwanderers_mobile/Account/Screens/login_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -51,7 +45,9 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: RegisterMobileScreen())
+                Expanded(child: 
+                
+                SingleChildScrollView(child: RegisterMobileScreen()))
               ],
             );
           }
@@ -177,12 +173,10 @@ class _RegisterMobileScreen extends State<RegisterMobileScreen> {
                         } else {
                           role = '2';
                         }
-                        print(role);
                         // Cek kredensial
                         // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                         // Untuk menyambungkan Android emulator dengan Django pada localhost,
                         // gunakan URL http://10.0.2.2/
-                        print("Line 180");
                         final Uri url = Uri.parse(
                             "https://inkwanderers.my.id/auth/register/");
 
@@ -196,7 +190,6 @@ class _RegisterMobileScreen extends State<RegisterMobileScreen> {
                         );
 
                         if (response.statusCode == 201) {
-                          print("Line 197");
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(

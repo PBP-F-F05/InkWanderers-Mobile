@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Models/book_models.dart';
 import 'package:inkwanderers_mobile/Account/Widgets/rank_book_card.dart';
-// import 'package:inkwanderers_mobile/collection/models/book.dart';
-import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
-// import 'package:inkwanderers_mobile/collection/widgets/book_card.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/book_catalogue.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -33,12 +31,6 @@ class _RankBookPageState extends State<RankBookPage> {
     return listCollection;
   }
 
-  // void handleInputChange(CookieRequest request, String input) {
-  //   setState(() {
-  //     _futureProducts = fetchProduct(request, input);
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
@@ -64,7 +56,7 @@ class _RankBookPageState extends State<RankBookPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'Riwayat Buku',
+                      'Ranking Buku',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 60,
@@ -92,19 +84,6 @@ class _RankBookPageState extends State<RankBookPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        TextField(
-                          // onChanged: handleInputChange(request, "a"),
-                          controller: _searchController,
-                          decoration: const InputDecoration(
-                              hintText: 'Cari di sini ...',
-                              labelText: 'Pencarian',
-                              hintStyle: TextStyle(
-                                color: Colors.grey,
-                              ),
-                              labelStyle: TextStyle(
-                                color: Colors.grey,
-                              )),
-                        ),
                         const SizedBox(height: 100),
                         const Text(
                           'Borrow more books...',
@@ -123,11 +102,11 @@ class _RankBookPageState extends State<RankBookPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const LihatBuku(),
+                                    builder: (context) => const CataloguePage(),
                                   ));
                             },
                             child: const Text(
-                              'Lihat Buku',
+                              'Browse Books',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 20,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/reviews/models/review.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:inkwanderers_mobile/collection/models/book.dart' as BookModel;
+import 'package:inkwanderers_mobile/Catalogue/Models/book.dart' as BookModel;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 class BookReviewPage extends StatelessWidget {
@@ -55,7 +55,7 @@ class BookReviewPage extends StatelessWidget {
                   const SizedBox(height: 10),
                   Text('Author: ${book.fields.authors}'),
                   const SizedBox(height: 10),
-                  Text('Rating: ${(book.fields.review_points.toDouble()/book.fields.review_count.toDouble()).toStringAsFixed(2)}'),
+                  Text('Rating: ${(book.fields.reviewPoints.toDouble()/book.fields.reviewCount.toDouble()).toStringAsFixed(2)}'),
                   const SizedBox(height: 10),
                   Text('Description: ${book.fields.description}'),
                 ],

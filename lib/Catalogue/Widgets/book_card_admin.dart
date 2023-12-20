@@ -1,19 +1,21 @@
 // ignore_for_file: sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:inkwanderers_mobile/Account/Models/book_models.dart';
+import 'package:inkwanderers_mobile/Catalogue/Models/book.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/admin_catalogue.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import "dart:convert";
 
-class RankBookToBookCard extends StatelessWidget {
-  final RankBookToBook rankBookToBook;
+class BookCardAdmin extends StatelessWidget {
+  final Book book;
 
-  const RankBookToBookCard(this.rankBookToBook, {super.key});
+  const BookCardAdmin(this.book, {super.key});
 
   void _showBookDetails(BuildContext context, request) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    String description = rankBookToBook.book.description;
+    String description = book.fields.description;
 
     showModalBottomSheet(
       context: context,
@@ -22,10 +24,12 @@ class RankBookToBookCard extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
-              Text(rankBookToBook.book.title,
+              Text(book.fields.title,
                   style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 20),
+                      fontSize: 18, fontWeight: FontWeight.bold),
+                      overflow: TextOverflow.ellipsis,
+                        maxLines: 1),
+              const SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -34,17 +38,17 @@ class RankBookToBookCard extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.network(rankBookToBook.book.thumbnail),
+                        Image.network(book.fields.thumbnail),
                         const SizedBox(height: 5),
                         Text(
-                          'Authors: ${rankBookToBook.book.authors}',
+                          'Authors: ${book.fields.authors}',
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontSize: 10, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 5),
                         Text(
-                          'Published Year: ${rankBookToBook.book.publishedYear}',
+                          'Published Year: ${book.fields.publishedYear}',
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontSize: 10, fontWeight: FontWeight.bold),
@@ -52,7 +56,6 @@ class RankBookToBookCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // const SizedBox(width: 5),
                   Flexible(
                     flex: 1,
                     child: Column(
@@ -85,12 +88,45 @@ class RankBookToBookCard extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               SizedBox(
-                width: screenWidth * 0.4,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Row(
+                      children: [
+                        Icon(Icons.star, size: 16),
+                        Text("${(book.fields.reviewPoints.toDouble()/book.fields.reviewCount.toDouble()).toStringAsFixed(1)}",
+                          style: TextStyle(fontSize: 11)
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {
+                            final response = await request.postJson(
+                            "https://inkwanderers.my.id/remove-flutter/",
+                            jsonEncode(<String, String>{
+                                'pk': book.pk.toString(),
 
+                            }));
+                            if (response['status'] == 'success') {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                content: Text("Book deleted!"),
+                                ));
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => CataloguePageAdmin()),
+                                );
+                            } else {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                    content:
+                                        Text("An error occured while trying to delete book"),
+                                ));
+                            }
+                        },
+                        child: const Text("Delete Book",style: TextStyle(fontSize: 11)
+                        )),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -117,7 +153,7 @@ class RankBookToBookCard extends StatelessWidget {
           _showBookDetails(context, request);
         },
         child: Container(
-          height: screenHeight * 0.5,
+          height: screenHeight * 0.3,
           width: screenWidth * 0.4,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -130,7 +166,7 @@ class RankBookToBookCard extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
                     child: Image.network(
-                      rankBookToBook.book.thumbnail,
+                      book.fields.thumbnail,
                       fit: BoxFit.cover,
                       height: screenHeight * 0.3,
                       width: double.infinity,
@@ -147,7 +183,7 @@ class RankBookToBookCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        rankBookToBook.book.title,
+                        book.fields.title,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 16.0,
@@ -156,33 +192,22 @@ class RankBookToBookCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
-                      const SizedBox(height: 5),
+                      const SizedBox(height: 3),
                       Text(
-                        rankBookToBook.book.authors,
+                        book.fields.authors,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 14.0,
-                        ),
+                        style: const TextStyle(fontSize: 14.0),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
-                     const SizedBox(height: 5),
-                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.book),
-                        SizedBox(width: 1,),
-                        Text(
-                          rankBookToBook.booksCount.toString(),
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 11.0,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                        ),
-                      ],
-                     )
+                      const SizedBox(height: 3),
+                      Text(
+                        book.fields.categories,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(fontSize: 12.0),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
                     ],
                   ),
                 ),

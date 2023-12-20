@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'dart:convert';
-import 'package:inkwanderers_mobile/collection/models/book.dart' as BookModel;
+import 'package:inkwanderers_mobile/Catalogue/Models/book.dart' as BookModel;
 import 'package:inkwanderers_mobile/reviews/models/review.dart';
 import 'package:inkwanderers_mobile/reviews/screens/book_review.dart';
 import 'package:inkwanderers_mobile/reviews/screens/editreview_form.dart';
@@ -29,11 +29,9 @@ class _MyReviewsPageState extends State<MyReviewsPage> {
     // melakukan konversi data json menjadi object Product
 
     List<Review> list_product = [];
-    // print("${response}");
     for (var d in response) {
       if (d != null) {
         Review r = Review.fromJson(d);
-        // print("work?");
         list_product.add(r);
       }
     }

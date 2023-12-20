@@ -27,7 +27,6 @@ class _LihatBukuState extends State<LihatBuku> {
     List<Book> listItem = [];
     for (var d in response) {
       if (d != null) {
-        // print(d);
         Book b = Book.fromJson(d);
         listItem.add(b);
       }

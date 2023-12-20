@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:inkwanderers_mobile/main.dart';
 import 'package:inkwanderers_mobile/Account/Screens/profile_screen.dart';
 import 'package:inkwanderers_mobile/Account/Models/account_models.dart';
+import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
@@ -35,7 +36,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   Future<Profile> fetchProfile(CookieRequest request) async {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-    // print("Line 33");
     final response = await request
         .get("https://inkwanderers.my.id/account/get-profile-json/");
     Profile profile = Profile.fromJson(response);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
-import 'package:inkwanderers_mobile/account/screens/profile_screen.dart';
+import 'package:inkwanderers_mobile/Account/Screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -34,13 +34,6 @@ class ChangePasswordScreen extends StatelessWidget {
                 child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Center(
-                    child: Text(
-                      "Jagalah passwordmu!",
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                  ),
                   ChangePasswordMobileScreen()
                 ],
               ),
@@ -49,16 +42,7 @@ class ChangePasswordScreen extends StatelessWidget {
             return const Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Expanded(
-                  child: Center(
-                    child: Text(
-                      'Jagalah passwordmu!',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                Expanded(child: ChangePasswordMobileScreen())
+                Expanded(child: SingleChildScrollView(child: ChangePasswordMobileScreen()))
               ],
             );
           }
@@ -81,6 +65,7 @@ class _ChangePasswordMobileScreen extends State<ChangePasswordMobileScreen> {
   TextEditingController _new_password1 = TextEditingController();
   TextEditingController _new_password2 = TextEditingController();
 
+
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
@@ -98,6 +83,7 @@ class _ChangePasswordMobileScreen extends State<ChangePasswordMobileScreen> {
               Container(
                 padding: const EdgeInsets.all(5),
                 child: TextField(
+                  
                   obscureText: visiblePassword,
                   enableSuggestions: false,
                   autocorrect: false,
@@ -185,7 +171,6 @@ class _ChangePasswordMobileScreen extends State<ChangePasswordMobileScreen> {
                               'new_password1': new_password1,
                               'new_password2': new_password2,
                             });
-                        print(response['status']);
                         if (response['status'] == true) {
                           Navigator.pop(context);
 
