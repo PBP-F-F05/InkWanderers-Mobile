@@ -42,7 +42,7 @@ class ChangePasswordScreen extends StatelessWidget {
             return const Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Expanded(child: ChangePasswordMobileScreen())
+                Expanded(child: SingleChildScrollView(child: ChangePasswordMobileScreen()))
               ],
             );
           }
@@ -171,7 +171,6 @@ class _ChangePasswordMobileScreen extends State<ChangePasswordMobileScreen> {
                               'new_password1': new_password1,
                               'new_password2': new_password2,
                             });
-                        print(response['status']);
                         if (response['status'] == true) {
                           Navigator.pop(context);
 

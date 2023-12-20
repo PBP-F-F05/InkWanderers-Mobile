@@ -42,7 +42,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: LoginMobileScreen())
+                Expanded(child: SingleChildScrollView(child: LoginMobileScreen()))
               ],
             );
           }

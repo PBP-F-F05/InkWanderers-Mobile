@@ -56,7 +56,7 @@ class _RankBookPageState extends State<RankBookPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'Riwayat Buku',
+                      'Ranking Buku',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 60,

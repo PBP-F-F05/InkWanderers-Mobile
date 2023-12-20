@@ -45,7 +45,9 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: RegisterMobileScreen())
+                Expanded(child: 
+                
+                SingleChildScrollView(child: RegisterMobileScreen()))
               ],
             );
           }
@@ -171,12 +173,10 @@ class _RegisterMobileScreen extends State<RegisterMobileScreen> {
                         } else {
                           role = '2';
                         }
-                        print(role);
                         // Cek kredensial
                         // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                         // Untuk menyambungkan Android emulator dengan Django pada localhost,
                         // gunakan URL http://10.0.2.2/
-                        print("Line 180");
                         final Uri url = Uri.parse(
                             "https://inkwanderers.my.id/auth/register/");
 
@@ -190,7 +190,6 @@ class _RegisterMobileScreen extends State<RegisterMobileScreen> {
                         );
 
                         if (response.statusCode == 201) {
-                          print("Line 197");
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(

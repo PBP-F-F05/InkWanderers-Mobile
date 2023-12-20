@@ -21,7 +21,7 @@ class _MyReviewsPageState extends State<MyReviewsPage> {
   Future<List<Review>> fetchProduct(CookieRequest request) async {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
     // var url = Uri.parse(
-    //     'http://127.0.0.1:8000/reviews/get-review/');
+    //     'https://inkwanderers.my.id/reviews/get-review/');
     var response =
         await request.get("https://inkwanderers.my.id/reviews/get-review/");
 
@@ -29,11 +29,9 @@ class _MyReviewsPageState extends State<MyReviewsPage> {
     // melakukan konversi data json menjadi object Product
 
     List<Review> list_product = [];
-    // print("${response}");
     for (var d in response) {
       if (d != null) {
         Review r = Review.fromJson(d);
-        // print("work?");
         list_product.add(r);
       }
     }

@@ -36,7 +36,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   Future<Profile> fetchProfile(CookieRequest request) async {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-    // print("Line 33");
     final response = await request
         .get("https://inkwanderers.my.id/account/get-profile-json/");
     Profile profile = Profile.fromJson(response);

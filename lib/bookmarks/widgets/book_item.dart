@@ -25,8 +25,7 @@ class BookItem extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          height: screenHeight * 0.6,
+        return SingleChildScrollView(
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
@@ -37,14 +36,8 @@ class BookItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    width: screenWidth * 0.4,
-                    height: screenHeight * 0.4,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 233, 161, 17),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.all(10),
+                  Flexible(
+                    flex: 1,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -66,31 +59,34 @@ class BookItem extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(width: 5),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Description:',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 5),
-                      SizedBox(
-                        width: screenWidth * 0.5,
-                        height: screenHeight * 0.35,
-                        child: SingleChildScrollView(
-                          child: Text(
-                            description,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.normal),
+                  // const SizedBox(width: 5),
+                  Flexible(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Description:',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 5),
+                        SizedBox(
+                          width: screenWidth * 0.5,
+                          height: screenHeight * 0.35,
+                          child: SingleChildScrollView(
+                            child: Text(
+                              description,
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.normal),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),

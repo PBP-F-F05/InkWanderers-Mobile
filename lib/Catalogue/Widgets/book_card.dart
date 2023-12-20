@@ -22,154 +22,150 @@ class BookCard extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          height: screenHeight * 0.6,
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              Text(book.fields.title,
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1),
-              const SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    width: screenWidth * 0.4,
-                    height: screenHeight * 0.41,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 233, 161, 17),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.network(book.fields.thumbnail),
-                        const SizedBox(height: 5),
-                        Text(
-                          'Authors: ${book.fields.authors}',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontSize: 10, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 5),
-                        Text(
-                          'Published Year: ${book.fields.publishedYear}',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontSize: 10, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Description:',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 5),
-                      SizedBox(
-                        width: screenWidth * 0.5,
-                        height: screenHeight * 0.35,
-                        child: SingleChildScrollView(
-                          child: Text(
-                            description,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.normal),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                child: Row(
+        return 
+         SingleChildScrollView(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                Text(book.fields.title,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1),
+                const SizedBox(height: 15),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
+                    Flexible(
+                      flex: 1,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.star, size: 16),
-                          Text("${(book.fields.reviewPoints.toDouble()/book.fields.reviewCount.toDouble()).toStringAsFixed(1)}", 
-                            style: TextStyle(fontSize: 11)
+                          Image.network(book.fields.thumbnail),
+                          const SizedBox(height: 5),
+                          Text(
+                            'Authors: ${book.fields.authors}',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontSize: 10, fontWeight: FontWeight.bold),
                           ),
+                          const SizedBox(height: 5),
+                          Text(
+                            'Published Year: ${book.fields.publishedYear}',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontSize: 10, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Description:',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 10, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 5),
+                          SizedBox(
+                            width: screenWidth * 0.5,
+                            height: screenHeight * 0.35,
+                            child: SingleChildScrollView(
+                              child: Text(
+                                description,
+                                textAlign: TextAlign.left,
+                                style: const TextStyle(
+                                    fontSize: 10, fontWeight: FontWeight.normal),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                          children: [
+                            Icon(Icons.star, size: 16),
+                            Text("${(book.fields.reviewPoints.toDouble()/book.fields.reviewCount.toDouble()).toStringAsFixed(1)}", 
+                              style: TextStyle(fontSize: 11)
+                            ),
+                            ElevatedButton(
+                              onPressed: () async {
+                                var response =
+                                  await request.postJson(
+                                      'https://inkwanderers.my.id/collection/add_collection_flutter/',
+                                      jsonEncode({
+                                        "pk": book.pk.toString(),
+                                      }));
+                                if (response["status"] == false) {
+                                  ScaffoldMessenger.of(
+                                      context)
+                                    ..hideCurrentSnackBar()
+                                    ..showSnackBar(
+                                        const SnackBar(
+                                            content: Text(
+                                                "Koleksi ini telah mencapai batas maksimal.")));
+                                } 
+                                
+                                else {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CataloguePage(),
+                                    ),
+                                  );
+                                }
+                              },
+                              child: const Text("Add to Collection", style: TextStyle(fontSize: 11)
+                              )),
+        
                           ElevatedButton(
                             onPressed: () async {
                               var response =
                                 await request.postJson(
-                                    'https://inkwanderers.my.id/collection/add_collection_flutter/',
+                                    'https://inkwanderers.my.id/bookmarks/bookmark_book_flutter/',
                                     jsonEncode({
                                       "pk": book.pk.toString(),
                                     }));
-                              if (response["status"] == false) {
-                                ScaffoldMessenger.of(
-                                    context)
-                                  ..hideCurrentSnackBar()
-                                  ..showSnackBar(
-                                      const SnackBar(
-                                          content: Text(
-                                              "Koleksi ini telah mencapai batas maksimal.")));
-                              } 
-                              
-                              else {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const CataloguePage(),
-                                  ),
-                                );
-                              }
+        
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => const CataloguePage()),
+                              );
                             },
-                            child: const Text("Add to Collection", style: TextStyle(fontSize: 11)
+                            child: const Text("Bookmark",style: TextStyle(fontSize: 11)
                             )),
-
-                        ElevatedButton(
-                          onPressed: () async {
-                            var response =
-                              await request.postJson(
-                                  'https://inkwanderers.my.id/bookmarks/bookmark_book_flutter/',
-                                  jsonEncode({
-                                    "pk": book.pk.toString(),
-                                  }));
-
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(builder: (context) => const CataloguePage()),
-                            );
-                          },
-                          child: const Text("Bookmark",style: TextStyle(fontSize: 11)
-                          )),
-
-                        ElevatedButton(
-                          onPressed: () async {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => BookReviewPage(book:book)),
-                            );
-                          },
-                          child: const Text("Reviews", style: TextStyle(fontSize: 11)
-                          )),
-                        ],
-                    ),
-                  ],
+        
+                          ElevatedButton(
+                            onPressed: () async {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => BookReviewPage(book:book)),
+                              );
+                            },
+                            child: const Text("Reviews", style: TextStyle(fontSize: 11)
+                            )),
+                          ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        );
+              ],
+            ),
+          );
       },
     );
   }
