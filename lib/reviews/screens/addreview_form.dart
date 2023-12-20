@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:inkwanderers_mobile/Catalogue/models/book.dart';
+import 'package:inkwanderers_mobile/Catalogue/Models/book.dart';
 import 'package:inkwanderers_mobile/Catalogue/Screens/book_catalogue.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -43,29 +43,6 @@ class _ReviewFormPageState extends State<ReviewFormPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Padding(
-                  //   padding: const EdgeInsets.all(8.0),
-                  //   child: TextFormField(
-                  //     decoration: InputDecoration(
-                  //       hintText: "Nama Produk",
-                  //       labelText: "Nama Produk",
-                  //       border: OutlineInputBorder(
-                  //         borderRadius: BorderRadius.circular(5.0),
-                  //       ),
-                  //     ),
-                  //     onChanged: (String? value) {
-                  //       setState(() {
-                  //         _ = value!;
-                  //       });
-                  //     },
-                  //     validator: (String? value) {
-                  //       if (value == null || value.isEmpty) {
-                  //         return "Nama tidak boleh kosong!";
-                  //       }
-                  //       return null;
-                  //     },
-                  //   ),
-                  // ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: const Text("Rating", style: TextStyle(fontSize: 20),),
@@ -124,7 +101,7 @@ class _ReviewFormPageState extends State<ReviewFormPage> {
                               // Kirim ke Django dan tunggu respons
                               // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                               final response = await request.postJson(
-                              "http://127.0.0.1:8000/reviews/add-review-flutter/${widget.book.pk}",
+                              "https://inkwanderers.my.id/reviews/add-review-flutter/${widget.book.pk}",
                               jsonEncode(<String, String>{
                                   // 'name': _name,
                         

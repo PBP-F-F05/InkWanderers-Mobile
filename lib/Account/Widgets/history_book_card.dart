@@ -2,8 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Models/book_models.dart';
-// import 'package:inkwanderers_mobile/collection/models/book.dart';
-// import 'package:inkwanderers_mobile/collection/widgets/review_modal.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -11,15 +9,6 @@ class HistoryBookToBookCard extends StatelessWidget {
   final HistoryBookToBook historyBookToBook;
 
   const HistoryBookToBookCard(this.historyBookToBook, {super.key});
-
-  // void _reviewForm(BuildContext context, request) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return ReviewModalPage(historyBook);
-  //     },
-  //   );
-  // }
 
   void _showBookDetails(BuildContext context, request) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -29,101 +18,102 @@ class HistoryBookToBookCard extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          height: screenHeight * 0.6,
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              Text(historyBookToBook.book.title,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    width: screenWidth * 0.4,
-                    height: screenHeight * 0.4,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 233, 161, 17),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.network(historyBookToBook.book.thumbnail),
-                        const SizedBox(height: 5),
-                        Text(
-                          'Authors: ${historyBookToBook.book.authors}',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontSize: 10, fontWeight: FontWeight.bold),
+        return 
+          SingleChildScrollView(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                Text(historyBookToBook.book.title,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.ellipsis,
+                          maxLines: 1
                         ),
-                        const SizedBox(height: 5),
-                        Text(
-                          'Published Year: ${historyBookToBook.book.publishedYear}',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontSize: 10, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Description:',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 5),
-                      SizedBox(
-                        width: screenWidth * 0.5,
-                        height: screenHeight * 0.35,
-                        child: SingleChildScrollView(
-                          child: Text(
-                            description,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.normal),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                width: screenWidth * 0.4,
-                child: Row(
+                const SizedBox(height: 20),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // const Row(
-                    //   children: [
-                    //     Icon(Icons.star),
-                    //     Text("5"),
-                    //   ],
-                    // ),
-                    // SizedBox(
-                    //   child: ElevatedButton(
-                    //       onPressed: () async {
-                    //         _reviewForm(context, request);
-                    //       },
-                    //       child: const Text("Selesai Baca")),
-                    // ),
+                    Flexible(
+                      flex:1,
+                      // padding: const EdgeInsets.all(10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.network(historyBookToBook.book.thumbnail),
+                          const SizedBox(height: 5),
+                          Text(
+                            'Authors: ${historyBookToBook.book.authors}',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontSize: 10, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            'Published Year: ${historyBookToBook.book.publishedYear}',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontSize: 10, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // const SizedBox(width: 5),
+                    Flexible(
+                      flex: 1,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Description:',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 10, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 5),
+                          SizedBox(
+                            width: screenWidth * 0.5,
+                            height: screenHeight * 0.35,
+                            child: SingleChildScrollView(
+                              child: Text(
+                                description,
+                                textAlign: TextAlign.left,
+                                style: const TextStyle(
+                                    fontSize: 10, fontWeight: FontWeight.normal),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-              ),
-            ],
-          ),
-        );
+                const SizedBox(height: 10),
+                SizedBox(
+                  width: screenWidth * 0.4,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // const Row(
+                      //   children: [
+                      //     Icon(Icons.star),
+                      //     Text("5"),
+                      //   ],
+                      // ),
+                      // SizedBox(
+                      //   child: ElevatedButton(
+                      //       onPressed: () async {
+                      //         _reviewForm(context, request);
+                      //       },
+                      //       child: const Text("Selesai Baca")),
+                      // ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
       },
     );
   }

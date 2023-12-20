@@ -3,12 +3,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+// import 'package:inkwanderers_mobile/reviews/models/review.dart';
 import 'package:inkwanderers_mobile/collection/models/book.dart';
-import 'package:inkwanderers_mobile/reviews/screens/addreview_form.dart';
-import 'package:inkwanderers_mobile/reviews/screens/book_review.dart';
+import 'package:inkwanderers_mobile/collection/widgets/left_drawer.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
+import 'package:inkwanderers_mobile/reviews/screens/addreview_form.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:inkwanderers_mobile/reviews/screens/book_review.dart';
 
 class LihatBuku extends StatefulWidget {
   const LihatBuku({Key? key}) : super(key: key);
@@ -20,12 +22,11 @@ class LihatBuku extends StatefulWidget {
 class _LihatBukuState extends State<LihatBuku> {
   Future<List<Book>> fetchBooks(CookieRequest request) async {
     var response = await request.get(
-      'http://127.0.0.1:8000/get_books_json/',
+      'https://inkwanderers.my.id/get_books_json/',
     );
     List<Book> listItem = [];
     for (var d in response) {
       if (d != null) {
-        // print(d);
         Book b = Book.fromJson(d);
         listItem.add(b);
       }
@@ -146,7 +147,7 @@ class _LihatBukuState extends State<LihatBuku> {
                                                   onPressed: () async {
                                                     var response =
                                                         await request.postJson(
-                                                            'http://127.0.0.1:8000/bookmarks/bookmark_book_flutter/',
+                                                            'https://inkwanderers.my.id/bookmarks/bookmark_book_flutter/',
                                                             jsonEncode({
                                                               "pk": snapshot
                                                                   .data![index]
@@ -169,7 +170,7 @@ class _LihatBukuState extends State<LihatBuku> {
                                                   onPressed: () async {
                                                     var response =
                                                         await request.postJson(
-                                                            'http://127.0.0.1:8000/collection/add_collection_flutter/',
+                                                            'https://inkwanderers.my.id/collection/add_collection_flutter/',
                                                             jsonEncode({
                                                               "pk": snapshot
                                                                   .data![index]

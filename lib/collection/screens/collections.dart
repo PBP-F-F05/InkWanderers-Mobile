@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/collection/models/book.dart';
-import 'package:inkwanderers_mobile/Catalogue/screens/book_catalogue.dart';
-import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/book_catalogue.dart';
 import 'package:inkwanderers_mobile/collection/widgets/book_card.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -18,7 +17,7 @@ class CollectionsPage extends StatefulWidget {
 class _CollectionsPageState extends State<CollectionsPage> {
   Future<List<Book>> fetchProduct(request) async {
     var response = await request
-        .get("http://127.0.0.1:8000/collection/collections_flutter/");
+        .get("https://inkwanderers.my.id/collection/collections_flutter/");
 
     List<Book> listCollection = [];
     for (var d in response) {

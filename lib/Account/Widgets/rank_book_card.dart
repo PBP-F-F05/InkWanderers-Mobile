@@ -2,9 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Models/book_models.dart';
-// import 'package:inkwanderers_mobile/Account/Models/book_models.dart';
-// import 'package:inkwanderers_mobile/collection/models/book.dart';
-// import 'package:inkwanderers_mobile/collection/widgets/review_modal.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -12,15 +9,6 @@ class RankBookToBookCard extends StatelessWidget {
   final RankBookToBook rankBookToBook;
 
   const RankBookToBookCard(this.rankBookToBook, {super.key});
-
-  // void _reviewForm(BuildContext context, request) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return ReviewModalPage(historyBook);
-  //     },
-  //   );
-  // }
 
   void _showBookDetails(BuildContext context, request) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -30,8 +18,7 @@ class RankBookToBookCard extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          height: screenHeight * 0.6,
+        return SingleChildScrollView(
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
@@ -42,14 +29,8 @@ class RankBookToBookCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    width: screenWidth * 0.4,
-                    height: screenHeight * 0.4,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 233, 161, 17),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.all(10),
+                  Flexible(
+                    flex: 1,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -71,31 +52,34 @@ class RankBookToBookCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(width: 5),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Description:',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 5),
-                      SizedBox(
-                        width: screenWidth * 0.5,
-                        height: screenHeight * 0.35,
-                        child: SingleChildScrollView(
-                          child: Text(
-                            description,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.normal),
+                  // const SizedBox(width: 5),
+                  Flexible(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Description:',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 5),
+                        SizedBox(
+                          width: screenWidth * 0.5,
+                          height: screenHeight * 0.35,
+                          child: SingleChildScrollView(
+                            child: Text(
+                              description,
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.normal),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),

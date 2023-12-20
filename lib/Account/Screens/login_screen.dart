@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
-import 'package:inkwanderers_mobile/account/screens/profile_screen.dart';
+import 'package:inkwanderers_mobile/Account/Screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -42,7 +42,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: LoginMobileScreen())
+                Expanded(child: SingleChildScrollView(child: LoginMobileScreen()))
               ],
             );
           }
@@ -140,7 +140,7 @@ class _LoginMobileScreen extends State<LoginMobileScreen> {
                         // Untuk menyambungkan Android emulator dengan Django pada localhost,
                         // gunakan URL http://10.0.2.2/
                         final response = await request
-                            .login("http://127.0.0.1:8000/auth/login/", {
+                            .login("https://inkwanderers.my.id/auth/login/", {
                           'username': username,
                           'password': password,
                         });

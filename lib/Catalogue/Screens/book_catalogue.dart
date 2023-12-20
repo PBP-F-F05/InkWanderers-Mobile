@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inkwanderers_mobile/Catalogue/models/book.dart';
-import 'package:inkwanderers_mobile/Catalogue/widgets/book_card.dart';
+import 'package:inkwanderers_mobile/Catalogue/Models/book.dart';
+import 'package:inkwanderers_mobile/Catalogue/Widgets/book_card.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +16,7 @@ class CataloguePage extends StatefulWidget {
 class _CataloguePageState extends State<CataloguePage> {
   Future<List<Book>> fetchProduct(request) async {
     var response = await request
-        .get("http://127.0.0.1:8000/get_books_json/");
+        .get("https://inkwanderers.my.id/get_books_json/");
 
     List<Book> listCollection = [];
     for (var d in response) {
@@ -34,7 +34,7 @@ class _CataloguePageState extends State<CataloguePage> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      bottomNavigationBar: const Navigation(position: 0,),
+      bottomNavigationBar: const Navigation(position: 2,),
       body: SingleChildScrollView(
         child: Column(
           children: [

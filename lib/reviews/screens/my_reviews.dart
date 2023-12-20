@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'dart:convert';
-import 'package:inkwanderers_mobile/Catalogue/models/book.dart' as BookModel;
+import 'package:inkwanderers_mobile/Catalogue/Models/book.dart' as BookModel;
 import 'package:inkwanderers_mobile/reviews/models/review.dart';
 import 'package:inkwanderers_mobile/reviews/screens/book_review.dart';
 import 'package:inkwanderers_mobile/reviews/screens/editreview_form.dart';
@@ -21,19 +21,17 @@ class _MyReviewsPageState extends State<MyReviewsPage> {
   Future<List<Review>> fetchProduct(CookieRequest request) async {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
     // var url = Uri.parse(
-    //     'http://127.0.0.1:8000/reviews/get-review/');
+    //     'https://inkwanderers.my.id/reviews/get-review/');
     var response =
-        await request.get("http://127.0.0.1:8000/reviews/get-review/");
+        await request.get("https://inkwanderers.my.id/reviews/get-review/");
 
     // melakukan decode response menjadi bentuk json
     // melakukan konversi data json menjadi object Product
 
     List<Review> list_product = [];
-    // print("${response}");
     for (var d in response) {
       if (d != null) {
         Review r = Review.fromJson(d);
-        // print("work?");
         list_product.add(r);
       }
     }
@@ -109,7 +107,7 @@ class _MyReviewsPageState extends State<MyReviewsPage> {
                             itemBuilder: (_, index) => InkWell(
                                 onTap: () async {
                                   var response = await request.get(
-                                      'http://127.0.0.1:8000/reviews/get-book/${data[index].book.id}');
+                                      'https://inkwanderers.my.id/reviews/get-book/${data[index].book.id}');
                                   BookModel.Book bookJson =
                                       BookModel.Book.fromJson(response[0]);
                                   Navigator.push(

@@ -68,7 +68,6 @@ class _ReviewModalPageState extends State<ReviewModalPage> {
                         );
                       }).toList(),
                       onChanged: (int? value) {
-                        // print("sebelum${rating}");
                         setState(() {
                           rating = value ?? 1;
                         });
@@ -119,7 +118,7 @@ class _ReviewModalPageState extends State<ReviewModalPage> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           final response = await request.postJson(
-                              "http://127.0.0.1:8000/reviews/add-review-flutter/${widget.book.pk}",
+                              "https://inkwanderers.my.id/reviews/add-review-flutter/${widget.book.pk}",
                               jsonEncode(<String, String>{
                                   // 'name': _name,
                                   // "pk": widget.book.pk
@@ -130,7 +129,7 @@ class _ReviewModalPageState extends State<ReviewModalPage> {
                               }));
                               
                           await request.postJson(
-                            'http://127.0.0.1:8000/collection/remove_collection_flutter/',
+                            'https://inkwanderers.my.id/collection/remove_collection_flutter/',
                             jsonEncode({
                               "pk": widget.book.pk
                                   .toString(),

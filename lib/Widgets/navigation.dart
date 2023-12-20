@@ -3,12 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Screens/change_password_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/history_book_screen.dart';
-import 'package:inkwanderers_mobile/Account/Screens/profile_Screen.dart';
+import 'package:inkwanderers_mobile/Account/Screens/profile_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/rank_book_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
 import 'package:inkwanderers_mobile/collection/screens/collections.dart';
-import 'package:inkwanderers_mobile/catalogue/screens/book_catalogue.dart';
-import 'package:inkwanderers_mobile/catalogue/screens/admin_catalogue.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/book_catalogue.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/admin_catalogue.dart';
 import 'package:inkwanderers_mobile/bookmarks/screens/bookmark_page.dart';
 import 'package:inkwanderers_mobile/reviews/screens/my_reviews.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
@@ -26,7 +26,7 @@ class Navigation extends StatefulWidget {
 
 class _NavigationState extends State<Navigation> {
   Future<void> handleNavigation(int index, CookieRequest request) async {
-    var response = await request.get("http://127.0.0.1:8000/get-role/");
+    var response = await request.get("https://inkwanderers.my.id/get-role/");
         if (index == 0) {
           if (response['status'] == 'admin') {
               ScaffoldMessenger.of(context)
@@ -263,7 +263,7 @@ class _NavigationState extends State<Navigation> {
                                 (Route<dynamic> route) => false);
 
                             request.logout(
-                                "http://127.0.0.1:8000/account/logout_flutter/");
+                                "https://inkwanderers.my.id/account/logout_flutter/");
                           },
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -287,7 +287,7 @@ class _NavigationState extends State<Navigation> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return BottomNavigationBar(
-      currentIndex: 4,
+      currentIndex: widget.position,
       selectedItemColor: Color.fromRGBO(255, 80, 03, 1),
       unselectedItemColor: Color.fromRGBO(05, 10, 48, 1),
       items: const [
@@ -295,22 +295,26 @@ class _NavigationState extends State<Navigation> {
           icon: Icon(Icons.my_library_books),
           label: 'Collection',
         ),
+
         BottomNavigationBarItem(
           icon: Icon(Icons.reviews_outlined),
           label: 'My Review',
         ),
+
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Home',
         ),
-        BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Bookmark'),
+
         BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle), label: 'Profile'),
+          icon: Icon(Icons.bookmark),
+          label: 'Bookmark'),
+
+        BottomNavigationBarItem(
+          icon: Icon(Icons.account_circle), 
+          label: 'Profile'),
       ],
       onTap: (i) => handleNavigation(i, request),
     );
   }
 }
-
-    
-

@@ -1,8 +1,8 @@
 // ignore_for_file: sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:inkwanderers_mobile/Catalogue/models/book.dart';
-import 'package:inkwanderers_mobile/Catalogue/screens/admin_catalogue.dart';
+import 'package:inkwanderers_mobile/Catalogue/Models/book.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/admin_catalogue.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import "dart:convert";
@@ -20,8 +20,7 @@ class BookCardAdmin extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          height: screenHeight * 0.6,
+        return SingleChildScrollView(
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
@@ -34,14 +33,8 @@ class BookCardAdmin extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    width: screenWidth * 0.4,
-                    height: screenHeight * 0.41,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 233, 161, 17),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.all(10),
+                  Flexible(
+                    flex: 1,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -63,31 +56,33 @@ class BookCardAdmin extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(width: 5),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Description:',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 5),
-                      SizedBox(
-                        width: screenWidth * 0.5,
-                        height: screenHeight * 0.35,
-                        child: SingleChildScrollView(
-                          child: Text(
-                            description,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.normal),
+                  Flexible(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Description:',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 5),
+                        SizedBox(
+                          width: screenWidth * 0.5,
+                          height: screenHeight * 0.35,
+                          child: SingleChildScrollView(
+                            child: Text(
+                              description,
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.normal),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -106,7 +101,7 @@ class BookCardAdmin extends StatelessWidget {
                         ElevatedButton(
                           onPressed: () async {
                             final response = await request.postJson(
-                            "http://127.0.0.1:8000/remove-flutter/",
+                            "https://inkwanderers.my.id/remove-flutter/",
                             jsonEncode(<String, String>{
                                 'pk': book.pk.toString(),
 
