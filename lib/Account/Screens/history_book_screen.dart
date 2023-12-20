@@ -19,7 +19,7 @@ class HistoryBookPage extends StatefulWidget {
 class _HistoryBookPageState extends State<HistoryBookPage> {
   Future<List<HistoryBookToBook>> fetchProduct(request) async {
     var response = await request
-        .get("http://127.0.0.1:8000/account/get-history-book-json-flutter/");
+        .get("https://inkwanderers.my.id/account/get-history-book-json-flutter/");
     List<HistoryBookToBook> listCollection = [];
     for (var d in response) {
       if (d != null) {

@@ -13,7 +13,7 @@ class BookReviewPage extends StatelessWidget {
   // You can use the book ID to filter reviews on the server side
   // Replace 'your_api_endpoint' with the actual API endpoint
   final response = await http.get(
-    Uri.parse('http://127.0.0.1:8000/reviews/show-reviews/${book.pk}'),
+    Uri.parse('https://inkwanderers.my.id/reviews/show-reviews/${book.pk}'),
   );
 
   if (response.statusCode == 200) {

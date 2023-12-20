@@ -22,7 +22,7 @@ class LihatBuku extends StatefulWidget {
 class _LihatBukuState extends State<LihatBuku> {
   Future<List<Book>> fetchBooks(CookieRequest request) async {
     var response = await request.get(
-      'http://127.0.0.1:8000/get_books_json/',
+      'https://inkwanderers.my.id/get_books_json/',
     );
     List<Book> listItem = [];
     for (var d in response) {
@@ -148,7 +148,7 @@ class _LihatBukuState extends State<LihatBuku> {
                                                   onPressed: () async {
                                                     var response =
                                                         await request.postJson(
-                                                            'http://127.0.0.1:8000/bookmarks/bookmark_book_flutter/',
+                                                            'https://inkwanderers.my.id/bookmarks/bookmark_book_flutter/',
                                                             jsonEncode({
                                                               "pk": snapshot
                                                                   .data![index]
@@ -171,7 +171,7 @@ class _LihatBukuState extends State<LihatBuku> {
                                                   onPressed: () async {
                                                     var response =
                                                         await request.postJson(
-                                                            'http://127.0.0.1:8000/collection/add_collection_flutter/',
+                                                            'https://inkwanderers.my.id/collection/add_collection_flutter/',
                                                             jsonEncode({
                                                               "pk": snapshot
                                                                   .data![index]

@@ -21,9 +21,9 @@ class _MyReviewsPageState extends State<MyReviewsPage> {
   Future<List<Review>> fetchProduct(CookieRequest request) async {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
     // var url = Uri.parse(
-    //     'http://127.0.0.1:8000/reviews/get-review/');
+    //     'https://inkwanderers.my.id/reviews/get-review/');
     var response =
-        await request.get("http://127.0.0.1:8000/reviews/get-review/");
+        await request.get("https://inkwanderers.my.id/reviews/get-review/");
 
     // melakukan decode response menjadi bentuk json
     // melakukan konversi data json menjadi object Product
@@ -109,7 +109,7 @@ class _MyReviewsPageState extends State<MyReviewsPage> {
                             itemBuilder: (_, index) => InkWell(
                                 onTap: () async {
                                   var response = await request.get(
-                                      'http://127.0.0.1:8000/reviews/get-book/${data[index].book.id}');
+                                      'https://inkwanderers.my.id/reviews/get-book/${data[index].book.id}');
                                   BookModel.Book bookJson =
                                       BookModel.Book.fromJson(response[0]);
                                   Navigator.push(

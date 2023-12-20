@@ -221,7 +221,7 @@ class _NavigationState extends State<Navigation> {
                                 (Route<dynamic> route) => false);
 
                             request.logout(
-                                "http://127.0.0.1:8000/account/logout_flutter/");
+                                "https://inkwanderers.my.id/account/logout_flutter/");
                           },
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

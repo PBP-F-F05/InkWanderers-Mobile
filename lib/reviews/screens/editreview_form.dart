@@ -124,7 +124,7 @@ class _EditReviewFormPageState extends State<EditReviewFormPage> {
                               // Kirim ke Django dan tunggu respons
                               // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                               final response = await request.postJson(
-                              "http://127.0.0.1:8000/reviews/edit-review-flutter/${widget.review.id}",
+                              "https://inkwanderers.my.id/reviews/edit-review-flutter/${widget.review.id}",
                               jsonEncode(<String, String>{
                                   // 'name': _name,
 

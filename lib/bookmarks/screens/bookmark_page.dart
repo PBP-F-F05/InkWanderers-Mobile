@@ -19,7 +19,7 @@ class BookmarksPage extends StatefulWidget {
 class _BookmarksPageState extends State<BookmarksPage> {
   Future<List<Book>> fetchProduct(request) async {
     var response =
-        await request.get("http://127.0.0.1:8000/bookmarks/get_bookmarks/");
+        await request.get("https://inkwanderers.my.id/bookmarks/get_bookmarks/");
 
     List<Book> listBookmark = [];
     for (var d in response) {

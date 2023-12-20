@@ -111,7 +111,7 @@ class BookItem extends StatelessWidget {
                       child: ElevatedButton(
                           onPressed: () async {
                             await request.postJson(
-                                'http://127.0.0.1:8000/bookmarks/remove_bookmark_flutter/',
+                                'https://inkwanderers.my.id/bookmarks/remove_bookmark_flutter/',
                                 jsonEncode({
                                   "pk": book.pk.toString(),
                                 }));

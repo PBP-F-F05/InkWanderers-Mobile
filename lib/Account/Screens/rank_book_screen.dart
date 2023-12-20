@@ -23,7 +23,7 @@ class _RankBookPageState extends State<RankBookPage> {
 
   Future<List<RankBookToBook>> fetchProduct(CookieRequest request, String search) async {
     var response = await request
-        .get("http://127.0.0.1:8000/account/get-rank-book-json-flutter/");
+        .get("https://inkwanderers.my.id/account/get-rank-book-json-flutter/");
     List<RankBookToBook> listCollection = [];
     for (var d in response) {
       if (d != null) {
