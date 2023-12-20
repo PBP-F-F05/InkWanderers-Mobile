@@ -1,5 +1,8 @@
 # InkWanderers
 
+## Tautan Aplikasi InkWanderers
+https://install.appcenter.ms/orgs/pbp-kelompok-f05/apps/inkwanderers/distribution_groups/everyone
+
 ### Anggota Kelompok:
 - Kevin Gilbert Sinaga (2206826053)
 - Muhamad Rifqi (2206081433)
