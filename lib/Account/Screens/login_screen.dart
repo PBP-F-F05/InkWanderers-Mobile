@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
-import 'package:inkwanderers_mobile/account/screens/profile_screen.dart';
+import 'package:inkwanderers_mobile/Account/Screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -36,13 +36,13 @@ class LoginScreen extends StatelessWidget {
                 Expanded(
                   child: Center(
                     child: Text(
-                      'Ayo mulai belanja',
+                      'InkWanderers',
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-                Expanded(child: LoginMobileScreen())
+                Expanded(child: SingleChildScrollView(child: LoginMobileScreen()))
               ],
             );
           }

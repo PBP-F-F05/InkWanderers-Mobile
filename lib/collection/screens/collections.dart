@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/collection/models/book.dart';
-import 'package:inkwanderers_mobile/collection/screens/temp_katalog.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/book_catalogue.dart';
 import 'package:inkwanderers_mobile/collection/widgets/book_card.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -17,7 +17,7 @@ class CollectionsPage extends StatefulWidget {
 class _CollectionsPageState extends State<CollectionsPage> {
   Future<List<Book>> fetchProduct(request) async {
     var response = await request
-        .get("https://InkWanderers.my.id/collection/collections_flutter/");
+        .get("https://inkwanderers.my.id/collection/collections_flutter/");
 
     List<Book> listCollection = [];
     for (var d in response) {
@@ -35,7 +35,7 @@ class _CollectionsPageState extends State<CollectionsPage> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      bottomNavigationBar: const Navigation(),
+      bottomNavigationBar: const Navigation(position: 0,),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -98,11 +98,11 @@ class _CollectionsPageState extends State<CollectionsPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const LihatBuku(),
+                                    builder: (context) => const CataloguePage(),
                                   ));
                             },
                             child: const Text(
-                              'Lihat Buku',
+                              'Browse Books',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 20,

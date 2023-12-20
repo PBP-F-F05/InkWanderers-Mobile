@@ -18,13 +18,13 @@ class ReviewModalPage extends StatefulWidget {
 class _ReviewModalPageState extends State<ReviewModalPage> {
   final _formKey = GlobalKey<FormState>();
   List<int> ratingOptions = [1, 2, 3, 4, 5];
-  int rating = 0;
+  int rating = 1;
   String review = "";
 
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
-    rating = ratingOptions.first;
+    // rating = ratingOptions.first;
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -67,10 +67,11 @@ class _ReviewModalPageState extends State<ReviewModalPage> {
                           child: Text(value.toString()),
                         );
                       }).toList(),
-                      onChanged: (int? newValue) {
+                      onChanged: (int? value) {
                         setState(() {
-                          rating = newValue!;
+                          rating = value ?? 1;
                         });
+                        
                       },
                       validator: (value) =>
                           value == 0 ? 'Please select a rating' : null,
@@ -116,8 +117,19 @@ class _ReviewModalPageState extends State<ReviewModalPage> {
                       child: const Text('Submit Review'),
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
+                          final response = await request.postJson(
+                              "https://inkwanderers.my.id/reviews/add-review-flutter/${widget.book.pk}",
+                              jsonEncode(<String, String>{
+                                  // 'name': _name,
+                                  // "pk": widget.book.pk
+                                  // .toString(),
+                                  'rating': rating.toString(),
+                                  'review': review,
+                                  // TODO: Sesuaikan field data sesuai dengan aplikasimu
+                              }));
+                              
                           await request.postJson(
-                            'http://127.0.0.1:8000/collection/remove_collection_flutter/',
+                            'https://inkwanderers.my.id/collection/remove_collection_flutter/',
                             jsonEncode({
                               "pk": widget.book.pk
                                   .toString(),
