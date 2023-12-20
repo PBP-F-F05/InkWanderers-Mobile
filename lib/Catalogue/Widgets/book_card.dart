@@ -1,8 +1,8 @@
 // ignore_for_file: sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:inkwanderers_mobile/Catalogue/models/book.dart';
-import 'package:inkwanderers_mobile/Catalogue/screens/book_catalogue.dart';
+import 'package:inkwanderers_mobile/Catalogue/Models/book.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/book_catalogue.dart';
 import 'package:inkwanderers_mobile/reviews/screens/addreview_form.dart';
 import 'package:inkwanderers_mobile/reviews/screens/book_review.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Models/book_models.dart';
 import 'package:inkwanderers_mobile/Account/Widgets/history_book_card.dart';
-import 'package:inkwanderers_mobile/Catalogue/screens/book_catalogue.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/book_catalogue.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';

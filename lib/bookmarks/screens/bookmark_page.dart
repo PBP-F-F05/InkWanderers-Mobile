@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/collection/models/book.dart';
 import 'package:inkwanderers_mobile/bookmarks/widgets/book_item.dart';
-import 'package:inkwanderers_mobile/Catalogue/screens/book_catalogue.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/book_catalogue.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';

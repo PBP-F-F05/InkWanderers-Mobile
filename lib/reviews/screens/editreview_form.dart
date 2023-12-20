@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:inkwanderers_mobile/Catalogue/models/book.dart';
+import 'package:inkwanderers_mobile/Catalogue/Models/book.dart';
 import 'package:inkwanderers_mobile/Catalogue/Screens/book_catalogue.dart';
 import 'package:inkwanderers_mobile/reviews/models/review.dart';
 import 'package:inkwanderers_mobile/reviews/screens/my_reviews.dart';

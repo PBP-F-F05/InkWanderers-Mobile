@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/reviews/models/review.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:inkwanderers_mobile/Catalogue/models/book.dart' as BookModel;
+import 'package:inkwanderers_mobile/Catalogue/Models/book.dart' as BookModel;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 class BookReviewPage extends StatelessWidget {

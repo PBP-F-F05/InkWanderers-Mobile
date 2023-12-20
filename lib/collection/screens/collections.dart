@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/collection/models/book.dart';
-import 'package:inkwanderers_mobile/Catalogue/screens/book_catalogue.dart';
+import 'package:inkwanderers_mobile/Catalogue/Screens/book_catalogue.dart';
 import 'package:inkwanderers_mobile/collection/widgets/book_card.dart';
 import 'package:inkwanderers_mobile/Widgets/navigation.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
