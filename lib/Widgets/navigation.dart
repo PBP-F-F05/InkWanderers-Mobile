@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:inkwanderers_mobile/Account/Screens/change_password_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/history_book_screen.dart';
-import 'package:inkwanderers_mobile/Account/Screens/profile_Screen.dart';
+import 'package:inkwanderers_mobile/Account/Screens/profile_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/rank_book_screen.dart';
 import 'package:inkwanderers_mobile/Account/Screens/register_screen.dart';
 import 'package:inkwanderers_mobile/collection/screens/collections.dart';
