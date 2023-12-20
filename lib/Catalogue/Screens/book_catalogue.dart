@@ -34,7 +34,7 @@ class _CataloguePageState extends State<CataloguePage> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      bottomNavigationBar: const Navigation(position: 0,),
+      bottomNavigationBar: const Navigation(position: 2,),
       body: SingleChildScrollView(
         child: Column(
           children: [
