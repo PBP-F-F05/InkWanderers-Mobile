@@ -33,16 +33,16 @@ class ChangePasswordScreen extends StatelessWidget {
             return const SafeArea(
                 child: SingleChildScrollView(
               child: Column(
-                children: [
-                  ChangePasswordMobileScreen()
-                ],
+                children: [ChangePasswordMobileScreen()],
               ),
             ));
           } else {
             return const Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Expanded(child: SingleChildScrollView(child: ChangePasswordMobileScreen()))
+                Expanded(
+                    child: SingleChildScrollView(
+                        child: ChangePasswordMobileScreen()))
               ],
             );
           }
@@ -61,10 +61,13 @@ class ChangePasswordMobileScreen extends StatefulWidget {
 
 class _ChangePasswordMobileScreen extends State<ChangePasswordMobileScreen> {
   bool visiblePassword = true;
+  bool visibleOldPassword = true;
+  bool visiblePassword1 = true;
+  bool visiblePassword2 = true;
+
   TextEditingController _old_passwordController = TextEditingController();
   TextEditingController _new_password1 = TextEditingController();
   TextEditingController _new_password2 = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -83,12 +86,11 @@ class _ChangePasswordMobileScreen extends State<ChangePasswordMobileScreen> {
               Container(
                 padding: const EdgeInsets.all(5),
                 child: TextField(
-                  
-                  obscureText: visiblePassword,
+                  obscureText: visibleOldPassword,
                   enableSuggestions: false,
                   autocorrect: false,
                   controller: _old_passwordController,
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                       hintText: 'Ketik password sekarang kamu di sini...',
                       labelText: 'Password',
                       hintStyle: TextStyle(
@@ -96,36 +98,64 @@ class _ChangePasswordMobileScreen extends State<ChangePasswordMobileScreen> {
                       ),
                       labelStyle: TextStyle(
                         color: Colors.grey,
-                      )),
+                      ),
+                      prefixIcon: const Icon(Icons.lock_outline),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          visibleOldPassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            visibleOldPassword = !visibleOldPassword;
+                          });
+                        },
+                      ),
+                      ),
                 ),
               ),
               const SizedBox(height: 20),
               Container(
                   padding: const EdgeInsets.all(5),
                   child: TextField(
-                    obscureText: visiblePassword,
+                    obscureText: visiblePassword1,
                     enableSuggestions: false,
                     autocorrect: false,
                     controller: _new_password1,
-                    decoration: const InputDecoration(
-                        hintText: 'Ketik kata sandi baru kamu di sini...',
-                        labelText: 'Kata sandi baru',
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
+                    decoration: InputDecoration(
+                      hintText: 'Ketik kata sandi baru kamu di sini...',
+                      labelText: 'Kata sandi baru',
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                      ),
+                      labelStyle: TextStyle(
+                        color: Colors.grey,
+                      ),
+                      prefixIcon: const Icon(Icons.lock_outline),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          visiblePassword1
+                              ? Icons.visibility
+                              : Icons.visibility_off,
                         ),
-                        labelStyle: TextStyle(
-                          color: Colors.grey,
-                        )),
+                        onPressed: () {
+                          setState(() {
+                            visiblePassword1 = !visiblePassword1;
+                          });
+                        },
+                      ),
+                    ),
                   )),
               const SizedBox(height: 20),
               Container(
                   padding: const EdgeInsets.all(5),
                   child: TextField(
-                    obscureText: visiblePassword,
+                    obscureText: visiblePassword2,
                     enableSuggestions: false,
                     autocorrect: false,
                     controller: _new_password2,
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                         hintText:
                             'Ketik konfirmasi kata sandi baru kamu di sini...',
                         labelText: 'Konfirmasi kata sandi baru',
@@ -134,19 +164,33 @@ class _ChangePasswordMobileScreen extends State<ChangePasswordMobileScreen> {
                         ),
                         labelStyle: TextStyle(
                           color: Colors.grey,
-                        )),
+                        ),
+                      prefixIcon: const Icon(Icons.lock_outline),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          visiblePassword2
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            visiblePassword2 = !visiblePassword2;
+                          });
+                        },
+                      ),
+                        ),
                   )),
-              Row(children: [
-                Checkbox(
-                  value: !visiblePassword,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      visiblePassword = !(value!);
-                    });
-                  },
-                ),
-                const Text("Lihat password"),
-              ]),
+              // Row(children: [
+              //   Checkbox(
+              //     value: !visiblePassword,
+              //     onChanged: (bool? value) {
+              //       setState(() {
+              //         visiblePassword = !(value!);
+              //       });
+              //     },
+              //   ),
+              //   const Text("Lihat password"),
+              // ]),
               const SizedBox(height: 20),
               Row(
                 children: [
